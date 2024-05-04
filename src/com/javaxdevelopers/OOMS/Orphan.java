@@ -34,17 +34,17 @@ public class Orphan extends Person{
     }
     @Override
     public void inputData() {
-        System.out.println("---Input data for child---");
+        System.out.println("---Input data for Orphan---");
         super.inputData();
         Scanner input = new Scanner(System.in);
         Scanner inputString = new Scanner(System.in);
 
-        System.out.print("Enter entry date of child: ");
+        System.out.print("Enter entry date of Orphan: ");
         this.setEntryDate(inputString.nextLine());
 
-        System.out.print("Enter number of skills for child: ");
-        int skillNumber= input.nextInt();
-        ArrayList<Skill> skills=new ArrayList<>();
+        System.out.print("Enter number of skills for Orphan: ");
+        int skillNumber = input.nextInt();
+        ArrayList<Skill> skills = new ArrayList<>();
         for (int i = 0; i < skillNumber; i++) {
             System.out.println("For skill "+(i+1));
             skills.add(Skill.inputSkill());
@@ -102,8 +102,9 @@ public class Orphan extends Person{
     @Override
     public void updateData(int choice) {
         super.updateData(choice);
-        Scanner input=new Scanner(System.in);
-        Scanner inputString=new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
+        Scanner inputString = new Scanner(System.in);
+        Orphan child = new Orphan();
         switch (choice){
             case 1:
             case 2:
@@ -113,7 +114,7 @@ public class Orphan extends Person{
                 Skill.updateSkill(this.getSkillSet());
                 break;
             case 5:
-                System.out.println("Previous entry date is: "+getEntryDate());
+                System.out.println("Previous entry date is: " + getEntryDate());
                 System.out.print("Enter new entry date: ");
                 this.setEntryDate(inputString.nextLine());
                 break;
