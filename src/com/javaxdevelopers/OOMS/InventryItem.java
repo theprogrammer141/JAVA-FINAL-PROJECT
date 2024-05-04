@@ -9,6 +9,7 @@ public class InventryItem {
     private String itemName;
     private double itemPrice;
     private int quantity;
+    private String itemType;
     public InventryItem(){}
 
     public static void addItem(OOM organization){
@@ -42,6 +43,9 @@ public class InventryItem {
                 System.out.println(e.getMessage());
             }
         }
+
+        System.out.print("Enter item type: ");
+        item.setItemType(inputString.nextLine());
 
         organization.getItemsList().add(item);
 
@@ -83,6 +87,7 @@ public class InventryItem {
                 System.out.println("1: Name");
                 System.out.println("2: Price");
                 System.out.println("3: Quantity");
+                System.out.println("4: Item type");
                 int choice = input.nextInt();
                 switch (choice) {
                     case 1:
@@ -114,6 +119,11 @@ public class InventryItem {
                             }
                         }
                         return;
+                    case 4:
+                        System.out.println("Previous item type is: "+item.getItemType());
+                        System.out.print("Enter new type: ");
+                        item.setItemType(inputString.nextLine());
+                        return;
                     default:
                         System.out.println("Make a valid choice!");
                 }
@@ -126,6 +136,7 @@ public class InventryItem {
         System.out.println("Item Name: "+this.getItemName());
         System.out.println("Item Price: "+this.getItemPrice());
         System.out.println("Item Quantity: "+this.getQuantity());
+        System.out.println("Item type: "+this.getItemType());
     }
     public static void viewItem(OOM organization){
         Scanner input=new Scanner(System.in);
@@ -180,5 +191,13 @@ public class InventryItem {
             this.quantity = quantity;
         else
             throw new NoNegativeValueException("Quantity must be a positive number");
+    }
+
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
     }
 }
