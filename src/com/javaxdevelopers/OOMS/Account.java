@@ -1,8 +1,12 @@
 package com.javaxdevelopers.OOMS;
 
+import com.javaxdevelopers.exceptionhandlers.InvalidAccountIDException;
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 //there is only one account of organization so accountID and bank name are preset
 public class Account {
     private String accountID;
@@ -10,8 +14,8 @@ public class Account {
     private double balance;
 
     public Account(){
-        setAccountID("abl32987456247");
-        setBankName("HBL");
+//        setAccountID("abl32987456247");
+//        setBankName("HBL");
     }
 
     public void depositMoney() throws NoNegativeValueException{
@@ -61,8 +65,11 @@ public class Account {
         return accountID;
     }
 
-    public void setAccountID(String accountID) {
-        this.accountID = accountID;
+    public void setAccountID(String accountID) throws InvalidAccountIDException{
+        if(isValidAccountID(accountID))
+            this.accountID = accountID;
+        else
+            throw new InvalidAccountIDException("Exception: Account ID should only contain digits and alphabets!");
     }
 
     public void setBankName(String bankName) {
@@ -77,8 +84,19 @@ public class Account {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setBalance(double balance) throws NoNegativeValueException{
+        if(balance > 0)
+            this.balance = balance;
+        else
+            throw new NoNegativeValueException("Exception: Balance cannot be less than 0!");
+    }
+
+    public boolean isValidAccountID(String accountID)
+    {
+        String pattern = "^[a-zA-Z0-9_-]{3,16}$";
+        Pattern regex = Pattern.compile(pattern);
+        Matcher matcher = regex.matcher(accountID);
+        return matcher.matches();
     }
 
 }
