@@ -1,3 +1,5 @@
+package com.javaxdevelopers.OOMS;
+
 import Exceptions.NoNegativeValueException;
 
 import java.util.Scanner;
@@ -18,10 +20,10 @@ public class Test {
             it terminate only when user want to
             */
             Scanner input = new Scanner(System.in);
-            System.out.println("1: Staff");
-            System.out.println("2: Orphan");
+            System.out.println("1: com.javaxdevelopers.OOMS.Staff");
+            System.out.println("2: com.javaxdevelopers.OOMS.Orphan");
             System.out.println("3: Donations");
-            System.out.println("4: Account");
+            System.out.println("4: com.javaxdevelopers.OOMS.Account");
             System.out.println("5: Inventory");
             System.out.println("6: Go to report generator");
             System.out.println("0: End");
@@ -97,7 +99,7 @@ public class Test {
         Scanner input=new Scanner(System.in);
         while(true){
             System.out.println("Please make a choice in donations: ");
-            System.out.println("1: Add Donation");
+            System.out.println("1: Add com.javaxdevelopers.OOMS.Donation");
             System.out.println("2: Display all donation");
             System.out.println("3: View a donation");
             System.out.println("0: Main menu");
@@ -158,11 +160,11 @@ public class Test {
     public static void getStaffChoice(OOM organization){
         while(true) {
             System.out.println("Please make a choice in staff");
-            System.out.println("1: Add Staff");
-            System.out.println("2: Remove Staff");
-            System.out.println("3: Update Staff record");
-            System.out.println("4: Display Staff record");
-            System.out.println("5: View a Staff");
+            System.out.println("1: Add com.javaxdevelopers.OOMS.Staff");
+            System.out.println("2: Remove com.javaxdevelopers.OOMS.Staff");
+            System.out.println("3: Update com.javaxdevelopers.OOMS.Staff record");
+            System.out.println("4: Display com.javaxdevelopers.OOMS.Staff record");
+            System.out.println("5: View a com.javaxdevelopers.OOMS.Staff");
             System.out.println("0: Return to last screen");
             Scanner input = new Scanner(System.in);
 
@@ -192,7 +194,7 @@ public class Test {
     }
     public static void getOrphanChoice(OOM organization){
         while(true) {
-            System.out.println("Please make a choice in Orphan");
+            System.out.println("Please make a choice in com.javaxdevelopers.OOMS.Orphan");
             System.out.println("1: Add Child");
             System.out.println("2: Remove Child");
             System.out.println("3: Update Child record");

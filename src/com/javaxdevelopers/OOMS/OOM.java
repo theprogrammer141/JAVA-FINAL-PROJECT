@@ -1,3 +1,5 @@
+package com.javaxdevelopers.OOMS;
+
 import java.util.ArrayList;
 /*
     this class contains arrayLists of other classes so that data of different

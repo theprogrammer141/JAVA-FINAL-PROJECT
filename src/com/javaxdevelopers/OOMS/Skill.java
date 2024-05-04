@@ -1,3 +1,5 @@
+package com.javaxdevelopers.OOMS;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,7 +14,7 @@ public class Skill {
         Scanner input=new Scanner(System.in);
         Scanner inputString=new Scanner(System.in);
         Skill skill=new Skill();
-        System.out.print("Enter Skill ID: ");
+        System.out.print("Enter com.javaxdevelopers.OOMS.Skill ID: ");
         skill.setSkillID(input.nextInt());
         System.out.print("Enter skill name: ");
         skill.setSkillName(inputString.nextLine());
@@ -24,9 +26,9 @@ public class Skill {
         Scanner input=new Scanner(System.in);
         Scanner inputString=new Scanner(System.in);
 
-        System.out.println("Please make a choice in Skill: ");
-        System.out.println("1: Add a Skill");
-        System.out.println("2: Remove a Skill");
+        System.out.println("Please make a choice in com.javaxdevelopers.OOMS.Skill: ");
+        System.out.println("1: Add a com.javaxdevelopers.OOMS.Skill");
+        System.out.println("2: Remove a com.javaxdevelopers.OOMS.Skill");
 
         int choice= input.nextInt();
         switch(choice){
@@ -41,11 +43,11 @@ public class Skill {
                     if (skill.getSkillName().equals(skillName)) {
 
                         skills.remove(skill);
-                        System.out.println("Skill removed successfully!");
+                        System.out.println("com.javaxdevelopers.OOMS.Skill removed successfully!");
                         return;
                     }
                 }
-                System.out.println("Skill not found!");
+                System.out.println("com.javaxdevelopers.OOMS.Skill not found!");
                 break;
             default:
                 System.out.println("Make a valid choice!");

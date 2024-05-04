@@ -1,3 +1,5 @@
+package com.javaxdevelopers.OOMS;
+
 import Exceptions.NoNegativeValueException;
 
 import java.util.ArrayList;
@@ -55,7 +57,7 @@ public class Person {
         System.out.println("Gender: " + this.getGender());
         System.out.println("Age: " + this.getAge());
 
-        System.out.println("---Printing Education details---");
+        System.out.println("---Printing com.javaxdevelopers.OOMS.Education details---");
         for (Education degree : this.getEducation()) {
             System.out.printf("---For degree %d ---\n",degree.getId());
             System.out.println("Degree level: " + degree.getEducationLevel());

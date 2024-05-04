@@ -1,3 +1,5 @@
+package com.javaxdevelopers.OOMS;
+
 import Exceptions.NoNegativeValueException;
 
 import java.util.Scanner;
@@ -50,7 +52,7 @@ public class Account {
     }
     public void displayAccount(){
         //Display info about organization account
-        System.out.println("---Printing Account details---");
+        System.out.println("---Printing com.javaxdevelopers.OOMS.Account details---");
         System.out.println("Bank account no: "+this.getAccountID());
         System.out.println("Bank name: "+this.getBankName());
         System.out.println("Balance: "+this.getBalance());

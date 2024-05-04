@@ -1,3 +1,5 @@
+package com.javaxdevelopers.OOMS;
+
 import Exceptions.NoNegativeValueException;
 
 import java.util.Scanner;
@@ -23,7 +25,7 @@ public class Staff extends Person{
             employee.inputData();
             employee.setId(id);
             organization.getStaffList().add(employee);
-            System.out.println("Staff added successfully! ");
+            System.out.println("com.javaxdevelopers.OOMS.Staff added successfully! ");
 
         }
         else
@@ -35,7 +37,7 @@ public class Staff extends Person{
     public void inputData() {
         //sets values for staff object taken from user
         //values of attributes of parent class are set using method in parent class
-        System.out.println("---Input data for Staff---");
+        System.out.println("---Input data for com.javaxdevelopers.OOMS.Staff---");
         super.inputData();
         Scanner input = new Scanner(System.in);
         Scanner inputString = new Scanner(System.in);
@@ -72,13 +74,13 @@ public class Staff extends Person{
                 int choice = input.nextInt();
                 if (choice == 1) {
                     organization.getStaffList().remove(employee);
-                    System.out.println("Staff removed successfully!");
+                    System.out.println("com.javaxdevelopers.OOMS.Staff removed successfully!");
                     return;
                 }
             }
         }
         if (!flag){
-            System.out.println("Staff not found!");
+            System.out.println("com.javaxdevelopers.OOMS.Staff not found!");
         }
     }
     public static void updateRecordOptions(OOM organization){
@@ -95,7 +97,7 @@ public class Staff extends Person{
                 System.out.println("Enter attribute to update record: ");
                 System.out.println("1: Name");
                 System.out.println("2: age");
-                System.out.println("3: Education");
+                System.out.println("3: com.javaxdevelopers.OOMS.Education");
                 System.out.println("4: Role");
                 System.out.println("5: Pay");
                 System.out.println("6: Contact");

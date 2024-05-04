@@ -1,3 +1,5 @@
+package com.javaxdevelopers.OOMS;
+
 public class ReportGenerator {
     public ReportGenerator(OOM organization) {
         /*
