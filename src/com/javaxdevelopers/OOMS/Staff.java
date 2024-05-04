@@ -1,5 +1,6 @@
 package com.javaxdevelopers.OOMS;
 
+import com.javaxdevelopers.exceptionhandlers.InvalidContactNumberException;
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
 import java.util.Scanner;
@@ -8,7 +9,6 @@ public class Staff extends Person{
     private String contact;
     private String role;
     private double pay;
-
 
     public Staff(){}
     /*no arg const. is preferred over fully parametrized one because input data
@@ -30,7 +30,6 @@ public class Staff extends Person{
         }
         else
             System.out.println("No more space for staff!");
-
     }
 
     @Override
@@ -55,8 +54,16 @@ public class Staff extends Person{
             }
         }
 
+        boolean validContact = false;
         System.out.print("Enter contact of staff: ");
-        this.setContact(inputString.nextLine());
+        do {
+            try {
+                this.setContact(inputString.nextLine());
+                validContact = true;
+            } catch (InvalidContactNumberException e) {
+                System.out.println(e.getMessage());
+            }
+        }while(!validContact);
 
     }
 
@@ -130,21 +137,31 @@ public class Staff extends Person{
                 this.setRole(inputString.nextLine());
                 break;
             case 5:
+                boolean validPay = false;
                 System.out.println("Previous pay is: " + this.getPay());
-                while(true) {
-                    System.out.print("Enter new pay of staff: ");
+                System.out.print("Enter new pay of staff: ");
+                do
+                {
                     try {
                         this.setPay(input.nextDouble());
-                        break;
-                    }catch (NoNegativeValueException e){
+                        validPay = true;
+                    } catch (NoNegativeValueException e) {
                         System.out.println(e.getMessage());
                     }
-                }
+                }while(!validPay);
                 break;
             case 6:
+                boolean validContact = false;
                 System.out.println("Previous contact is: " + this.getContact());
                 System.out.print("Enter new contact: ");
-                this.setContact(inputString.nextLine());
+                do {
+                    try {
+                        this.setContact(inputString.nextLine());
+                        validContact = true;
+                    } catch (InvalidContactNumberException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }while(!validContact);
                 break;
             default:
                 System.out.println("Please make a valid choice");
@@ -171,7 +188,6 @@ public class Staff extends Person{
                 flag=true;
                 employee.displayData();
             }
-
         }
         if (!flag){
             System.out.println("No such staff found!");
@@ -183,8 +199,11 @@ public class Staff extends Person{
         return contact;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setContact(String contact) throws InvalidContactNumberException{
+        if(contact.matches("[0-9]+"))
+            this.contact = contact;
+        else
+            throw new InvalidContactNumberException("Exception: Contact Number should only contain digits!");
     }
 
     public String getRole() {
@@ -203,7 +222,7 @@ public class Staff extends Person{
         if( pay > 0)
             this.pay = pay;
         else
-            throw new NoNegativeValueException("Pay must not be negative!");
+            throw new NoNegativeValueException("Exception: Pay cannot be less than zero!");
     }
 
 }
