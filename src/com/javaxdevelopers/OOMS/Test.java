@@ -29,6 +29,7 @@ public class Test {
             System.out.println("5: Inventory");
             System.out.println("6: Go to report generator");
             System.out.println("0: Exit");
+            System.out.println("-----------------------------------------------------------------");
 
             switch (input.nextInt()) {
                 case 1:
@@ -64,6 +65,7 @@ public class Test {
     public static void inventoryChoice(OOM organization){
 
         while(true) {
+            System.out.println("----------------------------------------------------");
             System.out.println("Please choose from the menu below:-");
             System.out.println("1: Add Item");
             System.out.println("2: Remove Item");
@@ -71,6 +73,7 @@ public class Test {
             System.out.println("4: Display Inventory record");
             System.out.println("5: View an item");
             System.out.println("0: Return to last screen");
+            System.out.println("-----------------------------------------------------");
             Scanner input = new Scanner(System.in);
 
             switch (input.nextInt()) {
@@ -100,11 +103,14 @@ public class Test {
     public static void getDonationChoice(OOM organization){
         Scanner input=new Scanner(System.in);
         while(true){
+            System.out.println("---------------------------------------------------");
             System.out.println("Please choose from the menu below:- ");
             System.out.println("1: Add Donation");
             System.out.println("2: Display all donations");
             System.out.println("3: View a donation");
             System.out.println("0: Main menu");
+            System.out.println("----------------------------------------------------");
+
             switch (input.nextInt()){
                 case 1:
                     Donation.addDonation(organization);
@@ -125,13 +131,17 @@ public class Test {
     }
     public static void accountChoice(OOM organization){
         Scanner input = new Scanner(System.in);
+
         while (true) {
+            System.out.println("------------------------------------------------");
             System.out.println("Please choose from the menu below:- ");
             System.out.println("1: Deposit money");
             System.out.println("2: Withdraw money");
             System.out.println("3: Display balance");
             System.out.println("4: Display account details");
             System.out.println("0: Main Menu");
+            System.out.println("-------------------------------------------------");
+
             switch (input.nextInt()){
                 case 1:
                     while(true) {
@@ -161,6 +171,7 @@ public class Test {
     }
     public static void getStaffChoice(OOM organization){
         while(true) {
+            System.out.println("---------------------------------------------------");
             System.out.println("Please choose from the menu below:-");
             System.out.println("1: Add Staff");
             System.out.println("2: Remove Staff");
@@ -168,6 +179,8 @@ public class Test {
             System.out.println("4: Display Staff record");
             System.out.println("5: View Staff Record");
             System.out.println("0: Return to last screen");
+            System.out.println("----------------------------------------------------");
+
             Scanner input = new Scanner(System.in);
 
             switch (input.nextInt()) {
@@ -196,6 +209,7 @@ public class Test {
     }
     public static void getOrphanChoice(OOM organization){
         while(true) {
+            System.out.println("--------------------------------------------------");
             System.out.println("Please choose from the menu below:- ");
             System.out.println("1: Add Child");
             System.out.println("2: Remove Child");
@@ -203,6 +217,7 @@ public class Test {
             System.out.println("4: Display Child record");
             System.out.println("5: View Child Record");
             System.out.println("0: Return to last screen");
+            System.out.println("---------------------------------------------------");
             Scanner input = new Scanner(System.in);
 
             switch (input.nextInt()) {
