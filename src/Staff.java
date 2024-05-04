@@ -151,7 +151,7 @@ public class Staff extends Person{
     //remaining methods are with same functionality as in donation class
     @Override
     public void displayData() {
-        System.out.println("---Printing Data for staff "+(this.getId()+1)+"---");
+        System.out.println("---Printing Data for staff "+(this.getId())+"---");
         super.displayData();
         System.out.println("Role: "+this.getRole());
         System.out.println("Pay: "+this.getPay());
