@@ -30,7 +30,7 @@ public class Donation {
     }
 
     public static void inputData(Donation dono){
-        //inputData method takes data from user and sets values of com.javaxdevelopers.OOMS.Donation object
+        //inputData method takes data from user and sets values of Donation object
         Scanner input = new Scanner(System.in);
         Scanner inputString = new Scanner(System.in);
 
@@ -55,13 +55,13 @@ public class Donation {
 
     public void displayData(){
         //displayData prints details of object
-        System.out.printf("---Printing details for com.javaxdevelopers.OOMS.Donation %d---\n",this.getDonationId());
+        System.out.printf("---Printing details for Donation %d---\n",this.getDonationId());
         System.out.println("Donor name: "+this.getDonorName());
-        System.out.println("com.javaxdevelopers.OOMS.Donation amount: "+this.getDonationAmount());
-        System.out.println("com.javaxdevelopers.OOMS.Donation date: "+this.getDate());
+        System.out.println("Donation amount: "+this.getDonationAmount());
+        System.out.println("Donation date: "+this.getDate());
     }
     public static void viewDonation(OOM organization){
-        //checks if required object of com.javaxdevelopers.OOMS.Donation is present and
+        //checks if required object of Donation is present and
         // then calls displayData to print details
         Scanner input = new Scanner(System.in);
         System.out.print("Enter donation id to view: ");
@@ -75,7 +75,7 @@ public class Donation {
             }
         }
         if(!flag){
-            System.out.println("com.javaxdevelopers.OOMS.Donation not found!");
+            System.out.println("Donation not found!");
         }
     }
 
@@ -103,7 +103,7 @@ public class Donation {
         if(donationAmount > 0)
             this.donationAmount = donationAmount;
         else
-            throw new NoNegativeValueException("com.javaxdevelopers.OOMS.Donation value cannot be negative");
+            throw new NoNegativeValueException("Donation value cannot be negative");
     }
 
     public String getDate() {
@@ -114,7 +114,7 @@ public class Donation {
         this.date = date;
     }
 
-    /*public com.javaxdevelopers.OOMS.Donation(int donationId, String donorName, double donationAmount, String date) {
+    /*public Donation(int donationId, String donorName, double donationAmount, String date) {
         this.donationId = donationId;
         this.donorName = donorName;
         this.donationAmount = donationAmount;

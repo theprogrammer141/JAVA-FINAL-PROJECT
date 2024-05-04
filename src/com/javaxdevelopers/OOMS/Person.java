@@ -1,15 +1,12 @@
 package com.javaxdevelopers.OOMS;
-
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
-
-import java.util.ArrayList;
 import java.util.Scanner;
 //Super class for staff/orphan with common attributes of both
 public class Person {
     private int id;
     private String name;
     private String gender;
-    private ArrayList<Education> education;
+    private Education education;
     private int age;
 
     public Person(){}
@@ -35,36 +32,19 @@ public class Person {
                 System.out.println(e.getMessage());
             }
         }
-
-        ArrayList<Education> edu = new ArrayList<>();
-
-        System.out.print("Enter no of degrees: ");
-        int degNumber = input.nextInt();
-
-        for (int i = 0; i < degNumber; i++) {
-            //to input education details method in education class is called
-            //so that inputEducation method is reusable when updating record
-            System.out.printf("---For degree %d : ---\n",(i+1));
-            Education degree=Education.inputEducation();
-            degree.setId(edu.size());
-            edu.add(degree);
-        }
-        this.setEducation(edu);
-
+        this.setEducation(Education.inputEducation());
     }
     public void displayData() {
         System.out.println("Name: " + this.getName());
         System.out.println("Gender: " + this.getGender());
         System.out.println("Age: " + this.getAge());
 
-        System.out.println("---Printing com.javaxdevelopers.OOMS.Education details---");
-        for (Education degree : this.getEducation()) {
-            System.out.printf("---For degree %d ---\n",degree.getId());
-            System.out.println("Degree level: " + degree.getEducationLevel());
-            System.out.println("Marks: " + degree.getMarksPercentage());
-            System.out.println("Grade: " + degree.getGrades());
-            System.out.println("Institute: " + degree.getInstitute());
-        }
+        System.out.println("---Printing Education details---");
+
+        System.out.println("---For highest level degree ---");
+        System.out.println("Degree level: " + this.getEducation().getEducationLevel());
+        System.out.println("Institute: " + this.getEducation().getInstitute());
+
 
     }
     public void updateData(int choice){
@@ -118,11 +98,11 @@ public class Person {
         this.gender = gender;
     }
 
-    public ArrayList<Education> getEducation() {
+    public Education getEducation() {
         return education;
     }
 
-    public void setEducation(ArrayList<Education> education) {
+    public void setEducation(Education education) {
         this.education = education;
     }
 
@@ -137,5 +117,3 @@ public class Person {
             throw new NoNegativeValueException("Age cannot be negative!");
     }
 }
-
-
