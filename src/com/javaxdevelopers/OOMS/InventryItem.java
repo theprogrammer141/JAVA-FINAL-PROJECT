@@ -1,6 +1,6 @@
 package com.javaxdevelopers.OOMS;
 
-import Exceptions.NoNegativeValueException;
+import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
 import java.util.Scanner;
 //methods with similar working as in donation class

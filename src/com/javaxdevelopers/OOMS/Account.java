@@ -1,6 +1,6 @@
 package com.javaxdevelopers.OOMS;
 
-import Exceptions.NoNegativeValueException;
+import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
 import java.util.Scanner;
 //there is only one account of organization so accountID and bank name are preset

@@ -1,6 +1,6 @@
 package com.javaxdevelopers.OOMS;
 
-import Exceptions.NoNegativeValueException;
+import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
