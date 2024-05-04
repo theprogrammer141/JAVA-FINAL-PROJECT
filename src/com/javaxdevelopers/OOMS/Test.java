@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) {
-        OOM organization=new OOM();
+        OOM organization = new OOM();
         /*
         One object of management class is created and used throughout to ensure
         all data is stored in one object
@@ -20,13 +20,15 @@ public class Test {
             it terminate only when user want to
             */
             Scanner input = new Scanner(System.in);
+            System.out.println("---------------Welcome to Organization Management---------------");
+            System.out.println("Please choose from the menu below:-");
             System.out.println("1: Staff");
             System.out.println("2: Orphan");
             System.out.println("3: Donations");
             System.out.println("4: Account");
             System.out.println("5: Inventory");
             System.out.println("6: Go to report generator");
-            System.out.println("0: End");
+            System.out.println("0: Exit");
 
             switch (input.nextInt()) {
                 case 1:
@@ -42,7 +44,7 @@ public class Test {
                     accountChoice(organization);
                     break;
                 case 5:
-                    inventryChoice(organization);
+                    inventoryChoice(organization);
                     break;
                 case 6:
                     ReportGenerator report=new ReportGenerator(organization);
@@ -50,7 +52,7 @@ public class Test {
                 case 0:
                     return;
                 default:
-                    System.out.println("Please make a valid choice");
+                    System.out.println("Please make a valid choice!");
             }
         }
     }
@@ -59,14 +61,14 @@ public class Test {
         methods in desired classes
         Again loop ensures that program is not terminated after one action
      */
-    public static void inventryChoice(OOM organization){
+    public static void inventoryChoice(OOM organization){
 
         while(true) {
-            System.out.println("Please make a choice in Inventry");
+            System.out.println("Please choose from the menu below:-");
             System.out.println("1: Add Item");
             System.out.println("2: Remove Item");
-            System.out.println("3: Update Inventry record");
-            System.out.println("4: Display Inventry record");
+            System.out.println("3: Update Inventory record");
+            System.out.println("4: Display Inventory record");
             System.out.println("5: View an item");
             System.out.println("0: Return to last screen");
             Scanner input = new Scanner(System.in);
@@ -91,16 +93,16 @@ public class Test {
                 case 0:
                     return;
                 default:
-                    System.out.println("Please make a valid choice");
+                    System.out.println("Please make a valid choice!");
             }
         }
     }
     public static void getDonationChoice(OOM organization){
         Scanner input=new Scanner(System.in);
         while(true){
-            System.out.println("Please make a choice in donations: ");
+            System.out.println("Please choose from the menu below:- ");
             System.out.println("1: Add Donation");
-            System.out.println("2: Display all donation");
+            System.out.println("2: Display all donations");
             System.out.println("3: View a donation");
             System.out.println("0: Main menu");
             switch (input.nextInt()){
@@ -108,8 +110,8 @@ public class Test {
                     Donation.addDonation(organization);
                     break;
                 case 2:
-                    for (Donation dono:organization.getDonationsList())
-                        dono.displayData();
+                    for (Donation donation : organization.getDonationsList())
+                        donation.displayData();
                     break;
                 case 3:
                     Donation.viewDonation(organization);
@@ -124,7 +126,7 @@ public class Test {
     public static void accountChoice(OOM organization){
         Scanner input = new Scanner(System.in);
         while (true) {
-            System.out.println("Make a choice in account: ");
+            System.out.println("Please choose from the menu below:- ");
             System.out.println("1: Deposit money");
             System.out.println("2: Withdraw money");
             System.out.println("3: Display balance");
@@ -153,18 +155,18 @@ public class Test {
                 case 0:
                     return;
                 default:
-                    System.out.println("Enter a valid choice!");
+                    System.out.println("Please make a valid choice!");
             }
         }
     }
     public static void getStaffChoice(OOM organization){
         while(true) {
-            System.out.println("Please make a choice in staff");
+            System.out.println("Please choose from the menu below:-");
             System.out.println("1: Add Staff");
             System.out.println("2: Remove Staff");
             System.out.println("3: Update Staff record");
             System.out.println("4: Display Staff record");
-            System.out.println("5: View a Staff");
+            System.out.println("5: View Staff Record");
             System.out.println("0: Return to last screen");
             Scanner input = new Scanner(System.in);
 
@@ -188,18 +190,18 @@ public class Test {
                 case 0:
                     return;
                 default:
-                    System.out.println("Please make a valid choice");
+                    System.out.println("Please make a valid choice!");
             }
         }
     }
     public static void getOrphanChoice(OOM organization){
         while(true) {
-            System.out.println("Please make a choice in Orphan");
+            System.out.println("Please choose from the menu below:- ");
             System.out.println("1: Add Child");
             System.out.println("2: Remove Child");
             System.out.println("3: Update Child record");
             System.out.println("4: Display Child record");
-            System.out.println("5: View a Child");
+            System.out.println("5: View Child Record");
             System.out.println("0: Return to last screen");
             Scanner input = new Scanner(System.in);
 
@@ -223,7 +225,7 @@ public class Test {
                 case 0:
                     return;
                 default:
-                    System.out.println("Please make a valid choice");
+                    System.out.println("Please make a valid choice!");
             }
         }
     }
