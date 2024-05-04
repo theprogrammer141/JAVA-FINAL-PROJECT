@@ -1,3 +1,5 @@
+import Exceptions.NoNegativeValueException;
+
 import java.util.Scanner;
 
 public class Staff extends Person{
@@ -37,10 +39,20 @@ public class Staff extends Person{
         super.inputData();
         Scanner input = new Scanner(System.in);
         Scanner inputString = new Scanner(System.in);
+
         System.out.print("Enter role of staff: ");
         this.setRole(inputString.nextLine());
-        System.out.print("Enter pay of staff: ");
-        this.setPay(input.nextDouble());
+
+        while(true) {
+            System.out.print("Enter pay of staff: ");
+            try {
+                this.setPay(input.nextDouble());
+                break;
+            }catch (NoNegativeValueException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
         System.out.print("Enter contact of staff: ");
         this.setContact(inputString.nextLine());
 
@@ -117,8 +129,15 @@ public class Staff extends Person{
                 break;
             case 5:
                 System.out.println("Previous pay is: " + this.getPay());
-                System.out.print("Enter new pay: ");
-                this.setPay(input.nextDouble());
+                while(true) {
+                    System.out.print("Enter new pay of staff: ");
+                    try {
+                        this.setPay(input.nextDouble());
+                        break;
+                    }catch (NoNegativeValueException e){
+                        System.out.println(e.getMessage());
+                    }
+                }
                 break;
             case 6:
                 System.out.println("Previous contact is: " + this.getContact());
@@ -178,8 +197,11 @@ public class Staff extends Person{
         return pay;
     }
 
-    public void setPay(double pay) {
-        this.pay = pay;
+    public void setPay(double pay) throws NoNegativeValueException {
+        if( pay > 0)
+            this.pay = pay;
+        else
+            throw new NoNegativeValueException("Pay must not be negative!");
     }
 
 }

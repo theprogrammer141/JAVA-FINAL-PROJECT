@@ -1,3 +1,5 @@
+import Exceptions.NoNegativeValueException;
+
 import java.util.Scanner;
 //This class keeps record of donations made for organization
 public class Donation {
@@ -35,8 +37,14 @@ public class Donation {
         System.out.print("Enter donor name: ");
         dono.setDonorName(inputString.nextLine());
 
-        System.out.print("Enter donation amount: ");
-        dono.setDonationAmount(input.nextDouble());
+        while(true)
+            try {
+                System.out.print("Enter donation amount: ");
+                dono.setDonationAmount(input.nextDouble());
+                break;
+            }catch (NoNegativeValueException e){
+                System.out.println(e.getMessage());
+        }
 
         System.out.print("Enter donation date (dd/mm/yyyy): ");
         dono.setDate(inputString.nextLine());
@@ -89,8 +97,11 @@ public class Donation {
         return donationAmount;
     }
 
-    public void setDonationAmount(double donationAmount) {
-        this.donationAmount = donationAmount;
+    public void setDonationAmount(double donationAmount) throws NoNegativeValueException{
+        if(donationAmount > 0)
+            this.donationAmount = donationAmount;
+        else
+            throw new NoNegativeValueException("Donation value cannot be negative");
     }
 
     public String getDate() {

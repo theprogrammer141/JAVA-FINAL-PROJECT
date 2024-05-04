@@ -1,3 +1,5 @@
+import Exceptions.NoNegativeValueException;
+
 import java.util.Scanner;
 //methods with similar working as in donation class
 public class InventryItem {
@@ -19,11 +21,25 @@ public class InventryItem {
         System.out.print("Enter item name: ");
         item.setItemName(inputString.nextLine());
 
-        System.out.print("Enter item Price: ");
-        item.setItemPrice(input.nextDouble());
+        while(true) {
+            System.out.print("Enter item Price: ");
+            try {
+                item.setItemPrice(input.nextDouble());
+                break;
+            }catch (NoNegativeValueException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
-        System.out.print("Enter Quantity: ");
-        item.setQuantity(input.nextInt());
+        while(true) {
+            System.out.print("Enter Quantity: ");
+            try {
+                item.setQuantity(input.nextInt());
+                break;
+            }catch (NoNegativeValueException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
         organization.getItemsList().add(item);
 
@@ -74,13 +90,27 @@ public class InventryItem {
                         return;
                     case 2:
                         System.out.println("Previous Price is: " + item.getItemPrice());
-                        System.out.print("Enter new price: ");
-                        item.setItemPrice(input.nextDouble());
+                        while(true) {
+                            System.out.print("Enter new item Price: ");
+                            try {
+                                item.setItemPrice(input.nextDouble());
+                                break;
+                            }catch (NoNegativeValueException e){
+                                System.out.println(e.getMessage());
+                            }
+                        }
                         return;
                     case 3:
                         System.out.println("Previous Quantity is: " + item.getQuantity());
-                        System.out.print("Enter new Quantity: ");
-                        item.setQuantity(input.nextInt());
+                        while(true) {
+                            System.out.print("Enter New Quantity: ");
+                            try {
+                                item.setQuantity(input.nextInt());
+                                break;
+                            }catch (NoNegativeValueException e){
+                                System.out.println(e.getMessage());
+                            }
+                        }
                         return;
                     default:
                         System.out.println("Make a valid choice!");
@@ -132,15 +162,21 @@ public class InventryItem {
         return itemPrice;
     }
 
-    public void setItemPrice(double itemPrice) {
-        this.itemPrice = itemPrice;
+    public void setItemPrice(double itemPrice) throws NoNegativeValueException {
+        if(itemPrice > 0)
+            this.itemPrice = itemPrice;
+        else
+            throw new NoNegativeValueException("Item price cannot be negative!");
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity(int quantity) throws NoNegativeValueException{
+        if(quantity>0)
+            this.quantity = quantity;
+        else
+            throw new NoNegativeValueException("Quantity must be a positive number");
     }
 }

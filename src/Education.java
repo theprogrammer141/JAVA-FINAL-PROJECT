@@ -1,3 +1,5 @@
+import Exceptions.NoNegativeValueException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,8 +24,15 @@ public class Education {
         System.out.print("Enter grades: ");
         degree.setGrades(input.next().charAt(0));
 
-        System.out.print("Enter marks percentage: ");
-        degree.setMarksPercentage(input.nextDouble());
+        while(true) {
+            try {
+                System.out.print("Enter marks percentage: ");
+                degree.setMarksPercentage(input.nextDouble());
+                break;
+            }catch (NoNegativeValueException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
         System.out.print("Enter Institute: ");
         degree.setInstitute(inputString.nextLine());
@@ -83,8 +92,11 @@ public class Education {
         return marksPercentage;
     }
 
-    public void setMarksPercentage(double marksPercentage) {
-        this.marksPercentage = marksPercentage;
+    public void setMarksPercentage(double marksPercentage) throws NoNegativeValueException{
+        if(marksPercentage >0 )
+            this.marksPercentage = marksPercentage;
+        else
+            throw new NoNegativeValueException("Marks cannot be negative!");
     }
 
     public String getInstitute() {

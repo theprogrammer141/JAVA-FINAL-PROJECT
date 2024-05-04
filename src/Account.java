@@ -1,3 +1,5 @@
+import Exceptions.NoNegativeValueException;
+
 import java.util.Scanner;
 //there is only one account of organization so accountID and bank name are preset
 public class Account {
@@ -10,14 +12,18 @@ public class Account {
         setBankName("HBL");
     }
 
-    public void depositMoney(){
+    public void depositMoney() throws NoNegativeValueException{
         //used to deposit money in account
         Scanner input=new Scanner(System.in);
-        System.out.println("Enter amount to deposit: ");
-        double amount= input.nextDouble();
-        balance+=amount;
-        System.out.println("Amount added successfully!");
-        this.checkBalance();
+            System.out.println("Enter amount to deposit: ");
+            double amount= input.nextDouble();
+            if (amount > 0) {
+                balance += amount;
+                System.out.println("Amount added successfully!");
+                this.checkBalance();
+            } else {
+                throw new NoNegativeValueException("Negative value cannot be added!");
+            }
     }
     public void depositMoney(double amount){
         //overLoaded method useful when a known amount is donated

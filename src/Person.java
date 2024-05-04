@@ -1,3 +1,5 @@
+import Exceptions.NoNegativeValueException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 //Super class for staff/orphan with common attributes of both
@@ -22,8 +24,15 @@ public class Person {
         System.out.print("Enter gender: ");
         this.setGender(inputString.nextLine());
 
-        System.out.print("Enter age: ");
-        this.setAge(input.nextInt());
+        while(true) {
+            System.out.print("Enter age: ");
+            try {
+                this.setAge(input.nextInt());
+                break;
+            }catch (NoNegativeValueException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
         ArrayList<Education> edu = new ArrayList<>();
 
@@ -67,8 +76,15 @@ public class Person {
                 break;
             case 2:
                 System.out.println("Previous age is: "+this.getAge());
-                System.out.print("Enter new age: ");
-                this.setAge(input.nextInt());
+                while(true) {
+                    System.out.print("Enter New Age: ");
+                    try {
+                        this.setAge(input.nextInt());
+                        break;
+                    }catch (NoNegativeValueException e){
+                        System.out.println(e.getMessage());
+                    }
+                }
                 break;
             case 3:
                 Education.updateEducation(this.getEducation());
@@ -112,8 +128,11 @@ public class Person {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAge(int age) throws NoNegativeValueException {
+        if(age > 0)
+            this.age = age;
+        else
+            throw new NoNegativeValueException("Age cannot be negative!");
     }
 }
 

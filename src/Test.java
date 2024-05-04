@@ -1,3 +1,5 @@
+import Exceptions.NoNegativeValueException;
+
 import java.util.Scanner;
 
 public class Test {
@@ -128,7 +130,14 @@ public class Test {
             System.out.println("0: Main Menu");
             switch (input.nextInt()){
                 case 1:
-                    organization.getBankAccount().depositMoney();
+                    while(true) {
+                        try {
+                            organization.getBankAccount().depositMoney();
+                            break;
+                        } catch (NoNegativeValueException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
                     break;
                 case 2:
                     organization.getBankAccount().withdrawMoney();
