@@ -115,7 +115,10 @@ public class Person {
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        if(gender.equalsIgnoreCase("Male") || gender.equalsIgnoreCase("Female") || gender.equalsIgnoreCase("Other"))
+            this.gender = gender;
+        else
+            System.out.println("Invalid Gender!");
     }
 
     public ArrayList<Education> getEducation() {
@@ -131,10 +134,10 @@ public class Person {
     }
 
     public void setAge(int age) throws NoNegativeValueException {
-        if(age > 0)
+        if(age > 0 && age <= 70)
             this.age = age;
         else
-            throw new NoNegativeValueException("Age cannot be negative!");
+            throw new NoNegativeValueException("Exception: Age must be in the range(1-70)!");
     }
 }
 
