@@ -4,11 +4,12 @@ import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
 import java.util.Scanner;
 //methods with similar working as in donation class
-public class InventryItem {
+public class InventoryItem {
     private int itemID;
     private String itemName;
     private double itemPrice;
     private int quantity;
+    public InventoryItem(){}
     private String itemType;
     public InventryItem(){}
 
@@ -18,7 +19,7 @@ public class InventryItem {
 
         System.out.println("---Enter Item details---");
 
-        InventryItem item=new InventryItem();
+        InventoryItem item=new InventoryItem();
         item.setItemID(organization.getItemsList().size()+1);
 
         System.out.print("Enter item name: ");
@@ -57,7 +58,7 @@ public class InventryItem {
         Scanner input=new Scanner(System.in);
         int id= input.nextInt();
         boolean flag=false;
-        for(InventryItem item: organization.getItemsList()) {
+        for(InventoryItem item: organization.getItemsList()) {
             if (item.getItemID() == id) {
                 flag = true;
                 item.displayData();
@@ -81,7 +82,7 @@ public class InventryItem {
         System.out.print("Enter Item ID to update record: ");
         int id = input.nextInt();
 
-        for (InventryItem item : organization.getItemsList()) {
+        for (InventoryItem item : organization.getItemsList()) {
             if (item.getItemID() == id) {
                 System.out.println("Enter attribute to update record: ");
                 System.out.println("1: Name");
@@ -143,7 +144,7 @@ public class InventryItem {
         System.out.print("Enter ID to view item: ");
         int id= input.nextInt();
         boolean flag=false;
-        for(InventryItem item: organization.getItemsList()){
+        for(InventoryItem item: organization.getItemsList()){
             if(item.getItemID()==id){
                 flag=true;
                 item.displayData();
