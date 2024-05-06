@@ -10,7 +10,7 @@ public class OOM {
     private ArrayList<Staff> staffList;
     private ArrayList<Orphan> orphansList;
     private ArrayList<Donation> donationsList;
-    private ArrayList<InventryItem> itemsList;
+    private ArrayList<InventoryItem> itemsList;
     private Account bankAccount;
 
     /*
@@ -53,11 +53,11 @@ public class OOM {
         this.donationsList = donationsList;
     }
 
-    public ArrayList<InventryItem> getItemsList() {
+    public ArrayList<InventoryItem> getItemsList() {
         return itemsList;
     }
 
-    public void setItemsList(ArrayList<InventryItem> itemsList) {
+    public void setItemsList(ArrayList<InventoryItem> itemsList) {
         this.itemsList = itemsList;
     }
 
