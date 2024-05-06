@@ -51,7 +51,7 @@ public class Orphan extends Person{
             if (child.getId() == id) {
                 flag = true;
                 child.displayData();
-                System.out.print("Are you sure you want to delete this com.javaxdevelopers.OOMS.Orphan?\n\"Enter 1 to continue\": ");
+                System.out.print("Are you sure you want to delete this Orphan?\n\"Enter 1 to continue\": ");
                 int choice = input.nextInt();
                 if (choice == 1) {
                     organization.getOrphansList().remove(child);

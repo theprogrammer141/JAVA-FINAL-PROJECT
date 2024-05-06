@@ -33,6 +33,7 @@ public class ReportGenerator {
             case 5:
                 calculateSkilledAndNonSkilledOrphans(orphans);
             default:
+                System.out.println("Please make a valid choice!");
         }
         System.out.println("---------------------------------------------------------------------");
     }
@@ -60,6 +61,7 @@ public class ReportGenerator {
                 calculateEducatedAndNonEducated(person);
                 break;
             default:
+                System.out.println("Please make a valid choice!");
         }
         System.out.println("---------------------------------------------------------------------");
     }
