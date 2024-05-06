@@ -119,6 +119,7 @@ public class Orphan extends Person{
         System.out.println("---Printing skill details---");
         for(Skill skill:this.getSkillSet()){
             System.out.printf("---For skill %d --- ",skill.getSkillID());
+            System.out.println();
             System.out.println("Skill Name: "+skill.getSkillName());
             System.out.println("Skill Description: "+skill.getSkillDescription());
         }
