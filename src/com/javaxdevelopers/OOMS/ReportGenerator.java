@@ -16,6 +16,8 @@ public class ReportGenerator {
         System.out.println("3: Print Details by Gender");
         System.out.println("4: Print Details by Education");
         System.out.println("5: Print Details by Skills");
+        System.out.println("---------------------------------------------------------------------");
+
         switch (input.nextInt()){
             case 1:
                 totalOrphans(orphans);
@@ -46,6 +48,7 @@ public class ReportGenerator {
         System.out.println("2: Print Details by Age group");
         System.out.println("3: Print Details by Gender");
         System.out.println("4: Print Details by Education");
+        System.out.println("-------------------------------------------------------------------");
         switch (input.nextInt()){
             case 1:
                 totalStaff(staff);
@@ -130,7 +133,7 @@ public class ReportGenerator {
         System.out.println("Percentage Of Females: " + femalePercentage + "%");
 
         System.out.printf("\nNumber Of Other Genders: %d", persons.size()-femaleOrphanCount-maleOrphanCount);
-        System.out.printf("Percentage Of Other Genders: %f %", 100-(femalePercentage+malePercentage));
+        System.out.printf("Percentage Of Other Genders: %f", 100-(femalePercentage+malePercentage), "%");
     }
 
 
