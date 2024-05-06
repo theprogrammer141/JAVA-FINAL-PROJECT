@@ -126,6 +126,7 @@ public class ReportGenerator {
         }
         double malePercentage =  ((double) maleOrphanCount / persons.size()) * 100;
         double femalePercentage =  ((double) femaleOrphanCount / persons.size()) * 100;
+        double otherGenderPercentage = 100-(femalePercentage+malePercentage);
         System.out.println("\nNumber Of Males: " + maleOrphanCount);
         System.out.println("Percentage Of Males: " + malePercentage + "%");
 
@@ -133,7 +134,7 @@ public class ReportGenerator {
         System.out.println("Percentage Of Females: " + femalePercentage + "%");
 
         System.out.printf("\nNumber Of Other Genders: %d", persons.size()-femaleOrphanCount-maleOrphanCount);
-        System.out.printf("Percentage Of Other Genders: %f", 100-(femalePercentage+malePercentage), "%");
+        System.out.println("Percentage Of Other Genders: " + otherGenderPercentage + "%");
     }
 
 

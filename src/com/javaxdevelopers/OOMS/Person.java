@@ -114,6 +114,9 @@ public class Person {
     }
 
     public void setAge(int age) throws NoNegativeValueException {
+        if (this instanceof Staff){
+
+        }
         if(age > 0 && age <= 70)
             this.age = age;
         else
