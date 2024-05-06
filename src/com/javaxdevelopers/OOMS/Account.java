@@ -1,6 +1,5 @@
 package com.javaxdevelopers.OOMS;
 
-import com.javaxdevelopers.exceptionhandlers.InvalidAccountIDException;
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
 import java.util.ArrayList;
@@ -16,8 +15,8 @@ public class Account {
     private ArrayList<Double> transactions = new ArrayList<>();
 
     public Account(){
-//        setAccountID("abl32987456247");
-//        setBankName("HBL");
+        setAccountID("abl32987456247");
+        setBankName("HBL");
     }
 
     public void depositMoney() throws NoNegativeValueException{
@@ -72,11 +71,8 @@ public class Account {
         return accountID;
     }
 
-    public void setAccountID(String accountID) throws InvalidAccountIDException{
-        if(isValidAccountID(accountID))
-            this.accountID = accountID;
-        else
-            throw new InvalidAccountIDException("Exception: Account ID should only contain digits and alphabets!");
+    public void setAccountID(String accountID) {
+       this.accountID = accountID;
     }
 
     public void setBankName(String bankName) {
