@@ -78,20 +78,20 @@ public class Test {
 
             switch (input.nextInt()) {
                 case 1:
-                    InventryItem.addItem(organization);
+                    InventoryItem.addItem(organization);
                     break;
                 case 2:
-                    InventryItem.removeItem(organization);
+                    InventoryItem.removeItem(organization);
                     break;
                 case 3:
-                    InventryItem.updateRecord(organization);
+                    InventoryItem.updateRecord(organization);
                     break;
                 case 4:
-                    for(InventryItem item: organization.getItemsList())
+                    for(InventoryItem item: organization.getItemsList())
                         item.displayData();
                     break;
                 case 5:
-                    InventryItem.viewItem(organization);
+                    InventoryItem.viewItem(organization);
                     break;
                 case 0:
                     return;

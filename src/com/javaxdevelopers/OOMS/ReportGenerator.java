@@ -222,13 +222,13 @@ public class ReportGenerator {
     }
 
     //METHOD FOR GENERATING REPORT FOR INVENTORY ITEMS
-    public static void generateReportForInventoryItems(ArrayList<InventryItem> items)
+    public static void generateReportForInventoryItems(ArrayList<InventoryItem> items)
     {
         System.out.println();
         System.out.println("------------------------INVENTORY ITEMS REPORT-----------------------");
         System.out.println("Total Number Of Items: " + items.size());
 
-        for(InventryItem inventoryItem : items)
+        for(InventoryItem inventoryItem : items)
         {
             inventoryItem.displayData();
             int usedQuantity = getUsedQuantity(inventoryItem);
@@ -242,7 +242,7 @@ public class ReportGenerator {
     }
 
     //METHOD FOR CALCULATING QUANTITY OF ITEM BEING USED
-    public static int getUsedQuantity(InventryItem inventoryItem)
+    public static int getUsedQuantity(InventoryItem inventoryItem)
     {
         return inventoryItem.getQuantity() / 2;
     }
