@@ -9,7 +9,6 @@ public class InventoryItem {
     private String itemName;
     private double itemPrice;
     private int quantity;
-    public InventoryItem(){}
     private String itemType;
     public InventoryItem(){}
 
