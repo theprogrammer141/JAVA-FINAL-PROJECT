@@ -3,6 +3,7 @@ package com.javaxdevelopers.OOMS;
 import com.javaxdevelopers.exceptionhandlers.InvalidAccountIDException;
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,6 +13,7 @@ public class Account {
     private String accountID;
     private String bankName;
     private double balance;
+    private ArrayList<Double> transactions = new ArrayList<>();
 
     public Account(){
 //        setAccountID("abl32987456247");
@@ -27,6 +29,7 @@ public class Account {
                 balance += amount;
                 System.out.println("Amount added successfully!");
                 this.checkBalance();
+                this.transactions.add(+amount);
             } else {
                 throw new NoNegativeValueException("Negative value cannot be added!");
             }
@@ -34,6 +37,7 @@ public class Account {
     public void depositMoney(double amount){
         //overLoaded method useful when a known amount is donated
         this.balance+=amount;
+        this.transactions.add(+amount);
         System.out.println("Amount added successfully!");
     }
     public void withdrawMoney(){
@@ -44,6 +48,7 @@ public class Account {
             balance-=amount;
             System.out.println("Withdrawal successful!");
             this.checkBalance();
+            this.transactions.add(-amount);
         }
         else {
             System.out.println("Insufficient balance");
@@ -60,6 +65,8 @@ public class Account {
         System.out.println("Bank account no: "+this.getAccountID());
         System.out.println("Bank name: "+this.getBankName());
         System.out.println("Balance: "+this.getBalance());
+        System.out.println("Transaction history: "+ this.getTransactions());
+
     }
     public String getAccountID() {
         return accountID;
@@ -99,4 +106,11 @@ public class Account {
         return matcher.matches();
     }
 
+    public ArrayList<Double> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(ArrayList<Double> transactions) {
+        this.transactions = transactions;
+    }
 }
