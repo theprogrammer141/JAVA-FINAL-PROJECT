@@ -114,11 +114,5 @@ public class Donation {
         this.date = date;
     }
 
-    /*public Donation(int donationId, String donorName, double donationAmount, String date) {
-        this.donationId = donationId;
-        this.donorName = donorName;
-        this.donationAmount = donationAmount;
-        this.date = date;
-    }
-     */
+
 }

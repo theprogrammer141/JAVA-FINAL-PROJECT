@@ -11,7 +11,7 @@ public class InventoryItem {
     private int quantity;
     public InventoryItem(){}
     private String itemType;
-    public InventryItem(){}
+    public InventoryItem(){}
 
     public static void addItem(OOM organization){
         Scanner input = new Scanner(System.in);
@@ -130,7 +130,7 @@ public class InventoryItem {
                 }
             }
         }
-            System.out.println("Item not found!");
+        System.out.println("Item not found!");
     }
     public void displayData(){
         System.out.printf("---Printing details for item %d---\n",this.getItemID());

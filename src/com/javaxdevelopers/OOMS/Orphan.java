@@ -7,16 +7,6 @@ public class Orphan extends Person{
     private ArrayList<Skill> skillSet;
     private String entryDate;
 
-    public Orphan() {
-    }
-
-    /*public com.javaxdevelopers.OOMS.Orphan(int id, String name, String gender, ArrayList<com.javaxdevelopers.OOMS.Education> education, int age, ArrayList<com.javaxdevelopers.OOMS.Skill> skillSet, String entryDate) {
-        super(id, name, gender, education, age);
-        this.skillSet = skillSet;
-        this.entryDate = entryDate;
-    }
-
-     */
 
     public  static void addOrphan(OOM organization){
         int id = organization.getOrphansList().size() + 1;
@@ -25,11 +15,11 @@ public class Orphan extends Person{
             child.inputData();
             child.setId(id);
             organization.getOrphansList().add(child);
-            System.out.println("com.javaxdevelopers.OOMS.Orphan added successfully! ");
+            System.out.println("Orphan added successfully! ");
 
         }
         else
-            System.out.println("No more space for com.javaxdevelopers.OOMS.Orphan!");
+            System.out.println("No more space for Orphan!");
 
     }
     @Override
@@ -61,22 +51,22 @@ public class Orphan extends Person{
             if (child.getId() == id) {
                 flag = true;
                 child.displayData();
-                System.out.print("Are you sure you want to delete this com.javaxdevelopers.OOMS.Orphan?\n\"Enter 1 to continue\": ");
+                System.out.print("Are you sure you want to delete this Orphan?\n\"Enter 1 to continue\": ");
                 int choice = input.nextInt();
                 if (choice == 1) {
                     organization.getOrphansList().remove(child);
-                    System.out.println("com.javaxdevelopers.OOMS.Orphan removed successfully!");
+                    System.out.println("Orphan removed successfully!");
                     return;
                 }
             }
         }
         if (!flag){
-            System.out.println("com.javaxdevelopers.OOMS.Orphan not found!");
+            System.out.println("Orphan not found!");
         }
     }
     public static void updateRecordOptions(OOM organization){
         Scanner input=new Scanner(System.in);
-        System.out.print("Enter com.javaxdevelopers.OOMS.Orphan ID to update record: ");
+        System.out.print("Enter Orphan ID to update record: ");
         int id = input.nextInt();
         boolean flag=false;
 
@@ -86,7 +76,7 @@ public class Orphan extends Person{
                 System.out.println("Enter attribute to update record: ");
                 System.out.println("1: Name");
                 System.out.println("2: age");
-                System.out.println("3: com.javaxdevelopers.OOMS.Education");
+                System.out.println("3: Education");
                 System.out.println("4: Skills");
                 System.out.println("5: Entry Date");
                 int choice= input.nextInt();
@@ -104,7 +94,6 @@ public class Orphan extends Person{
         super.updateData(choice);
         Scanner input = new Scanner(System.in);
         Scanner inputString = new Scanner(System.in);
-        Orphan child = new Orphan();
         switch (choice){
             case 1:
             case 2:
@@ -119,19 +108,19 @@ public class Orphan extends Person{
                 this.setEntryDate(inputString.nextLine());
                 break;
             default:
-                System.out.println("Please make a valid choice");
+                System.out.println("Please make a valid choice!");
         }
     }
 
     @Override
     public void displayData() {
-        System.out.printf("---Printing details for com.javaxdevelopers.OOMS.Orphan %d ---\n",this.getId());
+        System.out.printf("---Printing details for Orphan %d ---\n",this.getId());
         super.displayData();
         System.out.println("---Printing skill details---");
         for(Skill skill:this.getSkillSet()){
             System.out.printf("---For skill %d --- ",skill.getSkillID());
-            System.out.println("com.javaxdevelopers.OOMS.Skill Name: "+skill.getSkillName());
-            System.out.println("com.javaxdevelopers.OOMS.Skill Description: "+skill.getSkillDescription());
+            System.out.println("Skill Name: "+skill.getSkillName());
+            System.out.println("Skill Description: "+skill.getSkillDescription());
         }
         System.out.println("Entry date is: "+this.getEntryDate());
 

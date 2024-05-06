@@ -48,7 +48,7 @@ public class Test {
                     inventoryChoice(organization);
                     break;
                 case 6:
-                    ReportGenerator report=new ReportGenerator(organization);
+                    generateReport(organization);
                     break;
                 case 0:
                     return;
@@ -245,6 +245,40 @@ public class Test {
         }
     }
 
+    public static void generateReport(OOM organization){
+        Scanner input = new Scanner(System.in);
+        while(true){
+            System.out.println("--------------------------------------------------");
+            System.out.println("Please choose from the menu below:- ");
+            System.out.println("1: Generate Staff Report");
+            System.out.println("2: Generate Orphan Report");
+            System.out.println("3: Generate Donations Report");
+            System.out.println("4: Generate Account Report");
+            System.out.println("5: Generate Inventory Report");
+            System.out.println("0: Main Menu");
+            System.out.println("-----------------------------------------------------------------");
 
-
+            switch (input.nextInt()) {
+                case 1:
+                    ReportGenerator.generateStaffReport(organization.getStaffList());
+                    break;
+                case 2:
+                    ReportGenerator.generateOrphanReport(organization.getOrphansList());
+                    break;
+                case 3:
+                    ReportGenerator.generateDonationsReport(organization.getDonationsList());
+                    break;
+                case 4:
+                    ReportGenerator.generateAccountsReport(organization.getBankAccount());
+                    break;
+                case 5:
+                    ReportGenerator.generateReportForInventoryItems(organization.getItemsList());
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("Please make a valid choice!");
+            }
+        }
+    }
 }
