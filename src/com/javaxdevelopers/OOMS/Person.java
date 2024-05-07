@@ -1,4 +1,5 @@
 package com.javaxdevelopers.OOMS;
+import com.javaxdevelopers.exceptionhandlers.InvalidAgeException;
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 import java.util.Scanner;
 //Super class for staff/orphan with common attributes of both
@@ -28,11 +29,15 @@ public class Person {
             try {
                 this.setAge(input.nextInt());
                 break;
-            }catch (NoNegativeValueException e){
+            }catch (NoNegativeValueException | InvalidAgeException e){
                 System.out.println(e.getMessage());
             }
         }
-        this.setEducation(Education.inputEducation());
+        System.out.println("If he is educated Enter 1: ");
+        if (input.nextInt()==1) {
+            this.setEducation(Education.inputEducation());
+        }else
+            this.setEducation(null);
     }
     public void displayData() {
         System.out.println("Name: " + this.getName());
@@ -63,7 +68,7 @@ public class Person {
                     try {
                         this.setAge(input.nextInt());
                         break;
-                    }catch (NoNegativeValueException e){
+                    }catch (NoNegativeValueException | InvalidAgeException e){
                         System.out.println(e.getMessage());
                     }
                 }
@@ -113,13 +118,15 @@ public class Person {
         return age;
     }
 
-    public void setAge(int age) throws NoNegativeValueException {
-        if (this instanceof Staff){
-
+    public void setAge(int age) throws NoNegativeValueException,InvalidAgeException {
+        if (age < 0)
+            throw new NoNegativeValueException("Exception: Age cannot be negative number");
+        else if (this instanceof Orphan && age >18){
+            throw new InvalidAgeException("Exception: Orphan age must be less than 18 years!");
         }
-        if(age > 0 && age <= 70)
+        else if(this instanceof Staff && age<18 || age > 60){
+            throw new InvalidAgeException("Exception: Staff age must be in range (18-60) years!");
+        }else
             this.age = age;
-        else
-            throw new NoNegativeValueException("Exception: Age must be in the range(1-70)!");
     }
 }

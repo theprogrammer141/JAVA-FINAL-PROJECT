@@ -10,7 +10,7 @@ public class InventoryItem {
     private double itemPrice;
     private int quantity;
     private String itemType;
-    public InventoryItem(){}
+
 
     public static void addItem(OOM organization){
         Scanner input = new Scanner(System.in);

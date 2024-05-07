@@ -34,6 +34,7 @@ public class ReportGenerator {
                 break;
             case 5:
                 calculateSkilledAndNonSkilledOrphans(orphans);
+                break;
             default:
                 System.out.println("Please make a valid choice!");
         }
@@ -55,6 +56,7 @@ public class ReportGenerator {
                 break;
             case 2:
                 countStaffByAgeGroups(staff);
+                break;
             case 3:
                 ArrayList<Person> persons = new ArrayList<>(staff);
                 calculateByGender(persons);
@@ -134,7 +136,7 @@ public class ReportGenerator {
         System.out.println("Percentage Of Females: " + femalePercentage + "%");
 
         System.out.printf("\nNumber Of Other Genders: %d", persons.size()-femaleOrphanCount-maleOrphanCount);
-        System.out.println("Percentage Of Other Genders: " + otherGenderPercentage + "%");
+        System.out.println("\nPercentage Of Other Genders: " + otherGenderPercentage + "%");
     }
 
 
@@ -143,7 +145,7 @@ public class ReportGenerator {
         int educatedCount = 0;
         int nonEducatedCount = 0;
         for (Person person : persons) {
-            if (!person.getEducation().getEducationLevel().equalsIgnoreCase("Null")){
+            if (person.getEducation() != null){
                 educatedCount++;
             } else {
                 nonEducatedCount++;
