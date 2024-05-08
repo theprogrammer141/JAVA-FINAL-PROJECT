@@ -11,6 +11,7 @@ public class OOM {
     private ArrayList<Orphan> orphansList;
     private ArrayList<Donation> donationsList;
     private ArrayList<InventoryItem> itemsList;
+    private ArrayList<Admin> administrators;
     private Account bankAccount;
 
     /*
@@ -23,6 +24,7 @@ public class OOM {
         setDonationsList(new ArrayList<>());
         setItemsList(new ArrayList<>());
         setBankAccount(new Account());
+        setAdministrators(new ArrayList<>());
     }
 
     public Account getBankAccount() {
@@ -63,5 +65,22 @@ public class OOM {
 
     public void setBankAccount(Account bankAccount) {
         this.bankAccount = bankAccount;
+    }
+
+    public ArrayList<Admin> getAdministrators() {
+        return administrators;
+    }
+
+    public void setAdministrators(ArrayList<Admin> administrators) {
+        Admin khizar=new Admin("Khizar Abbas",new ArrayList<>());
+        khizar.getPasswords().add("zxcvp.234,rt");
+        Admin bilal=new Admin("bilal Mustafa",new ArrayList<>());
+        bilal.getPasswords().add("uroiw4.345a");
+        Admin abdullah=new Admin("Muhammad Abdullah",new ArrayList<>());
+        abdullah.getPasswords().add("afd.345sdfa");
+        administrators.add(khizar);
+        administrators.add(abdullah);
+        administrators.add(bilal);
+        this.administrators = administrators;
     }
 }

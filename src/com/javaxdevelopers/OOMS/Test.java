@@ -2,11 +2,15 @@ package com.javaxdevelopers.OOMS;
 
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) {
         OOM organization = new OOM();
+        if(!authenticationInput(organization))
+            System.exit(1);
+
         /*
         One object of management class is created and used throughout to ensure
         all data is stored in one object
@@ -62,6 +66,59 @@ public class Test {
         methods in desired classes
         Again loop ensures that program is not terminated after one action
      */
+    public static boolean authenticationInput(OOM organization){
+
+        System.out.println("----------------------------------------------------");
+        System.out.println("----WELCOME TO ORPHANAGE ORGANIZATION MANAGEMENT-----");
+        while (true) {
+
+        System.out.println("1: Login in an Admin Account");
+        System.out.println("2: Add new Admin");
+        System.out.println("3: Change Password");
+        Scanner input = new Scanner(System.in);
+        int choice = input.nextInt();
+        if(authentication(organization.getAdministrators(),choice))
+            return true;
+        }
+
+    }
+    public static boolean authentication(ArrayList<Admin> administrators, int choice){
+        Scanner input = new Scanner(System.in);
+        switch (choice) {
+            case 1:
+                if (Admin.logIn(administrators))
+                    return true;
+                else {
+                    System.out.println("Invalid Admin name or password");
+                    System.out.println("1: Retry");
+                    System.out.println("2: Forget Password");
+                    System.out.println("3: return");
+                    switch (input.nextInt()){
+                        case 1:
+                            if(authentication(administrators,1))
+                                return true;
+                            break;
+                        case 2:
+                            Admin.changePassword(administrators);
+                            break;
+                        case 3:
+                            return false;
+                        default:
+                            System.out.println("Invalid choice!");
+                    }
+                }
+                break;
+            case 2:
+                Admin.newAdmin(administrators);
+                break;
+            case 3:
+                Admin.changePassword(administrators);
+                break;
+            default:
+        }
+        return false;
+    }
+
     public static void inventoryChoice(OOM organization){
 
         while(true) {
