@@ -55,7 +55,7 @@ public class Admin {
         System.out.println("---To change password---");
         Scanner inputString = new Scanner(System.in);
 
-        System.out.print("Enter Admin Name");
+        System.out.print("Enter Admin Name: ");
         String adminName = inputString.nextLine();
         System.out.print("Enter Last Password you remember: ");
         String password = inputString.nextLine();
