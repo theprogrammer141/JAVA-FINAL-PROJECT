@@ -1,6 +1,6 @@
 package com.javaxdevelopers.OOMS;
 
-import java.sql.SQLOutput;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -35,7 +35,6 @@ public class Admin {
     }
 
     public static void newAdmin(ArrayList<Admin> administrator){
-        Scanner input = new Scanner(System.in);
         Scanner inputString = new Scanner(System.in);
         System.out.println("To add new admin ");
         System.out.println("Only previous Admins can add new admins!");
@@ -48,13 +47,14 @@ public class Admin {
             System.out.print("Enter admin password: ");
             passwords.add(inputString.nextLine());
             newAdmin.setPasswords(passwords);
+            administrator.add(newAdmin);
         }else
             System.out.println("Admin authentication failed!");
     }
     public static void changePassword(ArrayList<Admin> administrators){
         System.out.println("---To change password---");
         Scanner inputString = new Scanner(System.in);
-        Scanner input = new Scanner(System.in);
+
         System.out.print("Enter Admin Name");
         String adminName = inputString.nextLine();
         System.out.print("Enter Last Password you remember: ");
@@ -62,8 +62,19 @@ public class Admin {
         for (Admin administrator : administrators){
             if (adminName.equalsIgnoreCase(administrator.getAdminName())){
                for (String adminPassword : administrator.getPasswords()){
-                   if (adminVerification( administrators, administrator))
-                       return;
+                   if (password.equals(adminPassword)){
+                       if(adminVerification(administrators,administrator)) {
+                           System.out.println("Password changed successfully!");
+                           return;
+                       }
+                   }else
+                   {
+                       System.out.println("Verification failed!");
+                       if(adminVerification(administrators,administrator)) {
+                           System.out.println("Password changed successfully!");
+                           return;
+                       }
+                   }
                }
             }
         }
