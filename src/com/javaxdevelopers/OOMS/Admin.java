@@ -1,16 +1,31 @@
 package com.javaxdevelopers.OOMS;
 
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Admin {
+public class Admin implements Serializable {
     private String adminName;
 
     private ArrayList<String> passwords;
 
     public Admin() {
+
     }
+
+    public static void writeAdminToFile(Admin admin) {
+        try (FileOutputStream fos = new FileOutputStream("D:\\2nd sem\\OOPs\\adminData.ser", true)) {
+            // Check if the file is already created and not empty
+            boolean append = new File("D:\\2nd sem\\OOPs\\adminData.ser").length() > 0;
+            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+            oos.writeObject(admin);
+            oos.close(); // Close the stream
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public Admin(String adminName, ArrayList<String> passwords) {
         this.adminName = adminName;
@@ -48,6 +63,7 @@ public class Admin {
             passwords.add(inputString.nextLine());
             newAdmin.setPasswords(passwords);
             administrator.add(newAdmin);
+            writeAdminToFile(newAdmin);
         }else
             System.out.println("Admin authentication failed!");
     }

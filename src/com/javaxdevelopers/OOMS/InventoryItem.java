@@ -2,15 +2,27 @@ package com.javaxdevelopers.OOMS;
 
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
+import java.io.*;
 import java.util.Scanner;
 //methods with similar working as in donation class
-public class InventoryItem {
+public class InventoryItem implements Serializable {
     private int itemID;
     private String itemName;
     private double itemPrice;
     private int quantity;
     private String itemType;
 
+    public static void writeItemToFile(InventoryItem item) {
+        try (FileOutputStream fos = new FileOutputStream("D:\\2nd sem\\OOPs\\itemData.ser", true)) {
+            // Check if the file is already created and not empty
+            boolean append = new File("D:\\2nd sem\\OOPs\\itemData.ser").length() > 0;
+            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+            oos.writeObject(item);
+            oos.close(); // Close the stream
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void addItem(OOM organization){
         Scanner input = new Scanner(System.in);
@@ -48,7 +60,7 @@ public class InventoryItem {
         item.setItemType(inputString.nextLine());
 
         organization.getItemsList().add(item);
-
+        writeItemToFile(item);
         System.out.println("Item added successfully!");
 
     }

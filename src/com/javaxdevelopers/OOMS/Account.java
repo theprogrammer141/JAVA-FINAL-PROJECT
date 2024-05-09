@@ -2,13 +2,14 @@ package com.javaxdevelopers.OOMS;
 
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 //there is only one account of organization so accountID and bank name are preset
-public class Account {
+public class Account implements Serializable {
     private String accountID;
     private String bankName;
     private double balance;
@@ -18,6 +19,18 @@ public class Account {
         setAccountID("abl32987456247");
         setBankName("HBL");
     }
+    public static void writeAccountToFile(Account account) {
+        try (FileOutputStream fos = new FileOutputStream("D:\\2nd sem\\OOPs\\accountData.ser", true)) {
+            // Check if the file is already created and not empty
+            boolean append = new File("D:\\2nd sem\\OOPs\\accountData.ser").length() > 0;
+            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+            oos.writeObject(account);
+            oos.close(); // Close the stream
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void depositMoney() throws NoNegativeValueException{
         //used to deposit money in account

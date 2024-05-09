@@ -1,5 +1,9 @@
 package com.javaxdevelopers.OOMS;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 /*
     this class contains arrayLists of other classes so that data of different
@@ -8,11 +12,11 @@ import java.util.ArrayList;
 public class OOM {
 
     private ArrayList<Staff> staffList;
-    private ArrayList<Orphan> orphansList;
-    private ArrayList<Donation> donationsList;
-    private ArrayList<InventoryItem> itemsList;
-    private ArrayList<Admin> administrators;
-    private Account bankAccount;
+    private ArrayList<Orphan> orphansList ;
+    private ArrayList<Donation> donationsList ;
+    private ArrayList<InventoryItem> itemsList ;
+    private ArrayList<Admin> administrators ;
+    private Account bankAccount ;
 
     /*
     This no arg constructor initialize arrayLists which are used to store data
@@ -20,12 +24,135 @@ public class OOM {
     */
     public OOM(){
         setStaffList(new ArrayList<>());
-        setOrphansList(new ArrayList<>());
+        setAdministrators(new ArrayList<>());
         setDonationsList(new ArrayList<>());
         setItemsList(new ArrayList<>());
+        setOrphansList(new ArrayList<>());
         setBankAccount(new Account());
-        setAdministrators(new ArrayList<>());
+        readFromFile();
+
+
     }
+    public void readFromFile(){
+        readStaffFromFile();
+        readAccountFromFile();
+        readDonationFromFile();
+        readOrphanFromFile();
+        readAdminFromFile();
+        readItemFromFile();
+    }
+
+
+    public void readStaffFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\staffData.ser"))){
+            Staff staff;
+
+            while ((staff = (Staff) in.readObject()) !=null){
+                this.getStaffList().add(staff);
+
+            }
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+       catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+       }
+
+
+    }
+    public void readOrphanFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\OrphanData.ser"))){
+            Orphan orphan;
+
+            while ((orphan = (Orphan) in.readObject()) !=null){
+                this.getOrphansList().add(orphan);
+            }
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+    }
+    public void readItemFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\itemData.ser"))){
+            InventoryItem item;
+
+            while ((item = (InventoryItem) in.readObject()) !=null){
+                this.getItemsList().add(item);
+            }
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+    }
+    public void readDonationFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\donationData.ser"))){
+            Donation donation;
+
+            while ((donation = (Donation) in.readObject()) !=null){
+                this.getDonationsList().add(donation);
+            }
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+    }
+    public void readAdminFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\adminData.ser"))){
+            Admin admin;
+
+            while ((admin = (Admin) in.readObject()) !=null){
+                this.getAdministrators().add(admin);
+            }
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+    }
+    public void readAccountFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\accountData.ser"))){
+            Account account;
+
+            while ((account = (Account) in.readObject()) !=null){
+                this.setBankAccount(account);
+            }
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
 
     public Account getBankAccount() {
         return bankAccount;
@@ -72,15 +199,6 @@ public class OOM {
     }
 
     public void setAdministrators(ArrayList<Admin> administrators) {
-        Admin khizar=new Admin("Khizar Abbas",new ArrayList<>());
-        khizar.getPasswords().add("zxcvp.234,rt");
-        Admin bilal=new Admin("bilal Mustafa",new ArrayList<>());
-        bilal.getPasswords().add("uroiw4.345a");
-        Admin abdullah=new Admin("Muhammad Abdullah",new ArrayList<>());
-        abdullah.getPasswords().add("afd.345sdfa");
-        administrators.add(khizar);
-        administrators.add(abdullah);
-        administrators.add(bilal);
         this.administrators = administrators;
     }
 }

@@ -1,8 +1,9 @@
 package com.javaxdevelopers.OOMS;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Education {
+public class Education implements Serializable {
     private String educationLevel;
     private String institute;
     public Education(){}

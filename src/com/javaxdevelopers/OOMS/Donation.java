@@ -2,9 +2,10 @@ package com.javaxdevelopers.OOMS;
 
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
+import java.io.*;
 import java.util.Scanner;
 //This class keeps record of donations made for organization
-public class Donation {
+public class Donation implements Serializable {
     private int donationId;
     private String donorName;
     private double donationAmount;
@@ -14,6 +15,17 @@ public class Donation {
     No arg constructor makes object for which we can set values rather that storing
     them in different variables and then using fully parametrized constructor*/
 
+    public static void writeDonationToFile(Donation donation) {
+        try (FileOutputStream fos = new FileOutputStream("D:\\2nd sem\\OOPs\\donationData.ser", true)) {
+            // Check if the file is already created and not empty
+            boolean append = new File("D:\\2nd sem\\OOPs\\donationData.ser").length() > 0;
+            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+            oos.writeObject(donation);
+            oos.close(); // Close the stream
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void addDonation(OOM organization){
     /*
@@ -26,6 +38,7 @@ public class Donation {
         donation.setDonationId(organization.getDonationsList().size()+1);
 
         organization.getDonationsList().add(donation);
+        writeDonationToFile(donation);
         organization.getBankAccount().depositMoney(donation.getDonationAmount());
     }
 

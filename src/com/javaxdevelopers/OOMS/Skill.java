@@ -1,9 +1,10 @@
 package com.javaxdevelopers.OOMS;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Skill {
+public class Skill implements Serializable {
     private int skillID;
     private String skillName;
     private String skillDescription;

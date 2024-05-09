@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Test {
     public static void main(String[] args) {
         OOM organization = new OOM();
+
         if(!authenticationInput(organization))
             System.exit(1);
 
