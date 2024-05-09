@@ -16,9 +16,9 @@ public class Donation implements Serializable {
     them in different variables and then using fully parametrized constructor*/
 
     public static void writeDonationToFile(Donation donation) {
-        try (FileOutputStream fos = new FileOutputStream("D:\\2nd sem\\OOPs\\donationData.ser", true)) {
+        try (FileOutputStream fos = new FileOutputStream("donationData.ser", true)) {
             // Check if the file is already created and not empty
-            boolean append = new File("D:\\2nd sem\\OOPs\\donationData.ser").length() > 0;
+            boolean append = new File("donationData.ser").length() > 0;
             ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
             oos.writeObject(donation);
             oos.close(); // Close the stream

@@ -18,11 +18,12 @@ public class Account implements Serializable {
     public Account(){
         setAccountID("abl32987456247");
         setBankName("HBL");
+        writeAccountToFile(this);
     }
     public static void writeAccountToFile(Account account) {
-        try (FileOutputStream fos = new FileOutputStream("D:\\2nd sem\\OOPs\\accountData.ser", true)) {
+        try (FileOutputStream fos = new FileOutputStream("accountData.ser", true)) {
             // Check if the file is already created and not empty
-            boolean append = new File("D:\\2nd sem\\OOPs\\accountData.ser").length() > 0;
+            boolean append = new File("accountData.ser").length() > 0;
             ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
             oos.writeObject(account);
             oos.close(); // Close the stream

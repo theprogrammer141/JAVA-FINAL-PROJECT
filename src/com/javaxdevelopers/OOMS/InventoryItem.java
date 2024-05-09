@@ -13,9 +13,9 @@ public class InventoryItem implements Serializable {
     private String itemType;
 
     public static void writeItemToFile(InventoryItem item) {
-        try (FileOutputStream fos = new FileOutputStream("D:\\2nd sem\\OOPs\\itemData.ser", true)) {
+        try (FileOutputStream fos = new FileOutputStream("itemData.ser", true)) {
             // Check if the file is already created and not empty
-            boolean append = new File("D:\\2nd sem\\OOPs\\itemData.ser").length() > 0;
+            boolean append = new File("itemData.ser").length() > 0;
             ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
             oos.writeObject(item);
             oos.close(); // Close the stream

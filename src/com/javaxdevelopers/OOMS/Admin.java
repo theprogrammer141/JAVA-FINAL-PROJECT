@@ -15,9 +15,9 @@ public class Admin implements Serializable {
     }
 
     public static void writeAdminToFile(Admin admin) {
-        try (FileOutputStream fos = new FileOutputStream("D:\\2nd sem\\OOPs\\adminData.ser", true)) {
+        try (FileOutputStream fos = new FileOutputStream("adminData.ser", true)) {
             // Check if the file is already created and not empty
-            boolean append = new File("D:\\2nd sem\\OOPs\\adminData.ser").length() > 0;
+            boolean append = new File("adminData.ser").length() > 0;
             ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
             oos.writeObject(admin);
             oos.close(); // Close the stream

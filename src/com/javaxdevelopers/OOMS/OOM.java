@@ -45,7 +45,7 @@ public class OOM {
 
     public void readStaffFromFile(){
 
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\staffData.ser"))){
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("staffData.ser"))){
             Staff staff;
 
             while ((staff = (Staff) in.readObject()) !=null){
@@ -64,7 +64,7 @@ public class OOM {
     }
     public void readOrphanFromFile(){
 
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\OrphanData.ser"))){
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("OrphanData.ser"))){
             Orphan orphan;
 
             while ((orphan = (Orphan) in.readObject()) !=null){
@@ -82,7 +82,7 @@ public class OOM {
     }
     public void readItemFromFile(){
 
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\itemData.ser"))){
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("itemData.ser"))){
             InventoryItem item;
 
             while ((item = (InventoryItem) in.readObject()) !=null){
@@ -100,7 +100,7 @@ public class OOM {
     }
     public void readDonationFromFile(){
 
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\donationData.ser"))){
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("donationData.ser"))){
             Donation donation;
 
             while ((donation = (Donation) in.readObject()) !=null){
@@ -118,7 +118,7 @@ public class OOM {
     }
     public void readAdminFromFile(){
 
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\adminData.ser"))){
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("adminData.ser"))){
             Admin admin;
 
             while ((admin = (Admin) in.readObject()) !=null){
@@ -136,7 +136,7 @@ public class OOM {
     }
     public void readAccountFromFile(){
 
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("D:\\2nd sem\\OOPs\\accountData.ser"))){
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("accountData.ser"))){
             Account account;
 
             while ((account = (Account) in.readObject()) !=null){
@@ -199,6 +199,7 @@ public class OOM {
     }
 
     public void setAdministrators(ArrayList<Admin> administrators) {
+
         this.administrators = administrators;
     }
 }
