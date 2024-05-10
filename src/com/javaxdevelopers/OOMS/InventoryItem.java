@@ -2,15 +2,29 @@ package com.javaxdevelopers.OOMS;
 
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 //methods with similar working as in donation class
-public class InventoryItem {
+public class InventoryItem implements Serializable {
     private int itemID;
     private String itemName;
     private double itemPrice;
     private int quantity;
     private String itemType;
 
+
+    public static void writeItemToFile(ArrayList<InventoryItem> item) {
+        try (FileOutputStream fos = new FileOutputStream("itemData.ser")) {
+            // Check if the file is already created and not empty
+            boolean append = new File("itemData.ser").length() > 0;
+            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+            oos.writeObject(item);
+            oos.close(); // Close the stream
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void addItem(OOM organization){
         Scanner input = new Scanner(System.in);
@@ -48,7 +62,7 @@ public class InventoryItem {
         item.setItemType(inputString.nextLine());
 
         organization.getItemsList().add(item);
-
+        writeItemToFile(organization.getItemsList());
         System.out.println("Item added successfully!");
 
     }
@@ -81,8 +95,10 @@ public class InventoryItem {
         System.out.print("Enter Item ID to update record: ");
         int id = input.nextInt();
 
+        boolean flag = false;
         for (InventoryItem item : organization.getItemsList()) {
             if (item.getItemID() == id) {
+                flag = true;
                 System.out.println("Enter attribute to update record: ");
                 System.out.println("1: Name");
                 System.out.println("2: Price");
@@ -94,7 +110,7 @@ public class InventoryItem {
                         System.out.println("Previous name is: "+item.getItemName());
                         System.out.print("Enter new name: ");
                         item.setItemName(inputString.nextLine());
-                        return;
+                        break;
                     case 2:
                         System.out.println("Previous Price is: " + item.getItemPrice());
                         while(true) {
@@ -106,7 +122,7 @@ public class InventoryItem {
                                 System.out.println(e.getMessage());
                             }
                         }
-                        return;
+                        break;
                     case 3:
                         System.out.println("Previous Quantity is: " + item.getQuantity());
                         while(true) {
@@ -118,18 +134,21 @@ public class InventoryItem {
                                 System.out.println(e.getMessage());
                             }
                         }
-                        return;
+                        break;
                     case 4:
                         System.out.println("Previous item type is: "+item.getItemType());
                         System.out.print("Enter new type: ");
                         item.setItemType(inputString.nextLine());
-                        return;
+                        break;
                     default:
                         System.out.println("Make a valid choice!");
                 }
             }
         }
-        System.out.println("Item not found!");
+        writeItemToFile(organization.getItemsList());
+        if (!flag)
+            writeItemToFile(organization.getItemsList());
+
     }
     public void displayData(){
         System.out.printf("---Printing details for item %d---\n",this.getItemID());

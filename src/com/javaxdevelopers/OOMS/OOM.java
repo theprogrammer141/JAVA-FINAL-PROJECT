@@ -1,5 +1,9 @@
 package com.javaxdevelopers.OOMS;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 /*
     this class contains arrayLists of other classes so that data of different
@@ -8,24 +12,122 @@ import java.util.ArrayList;
 public class OOM {
 
     private ArrayList<Staff> staffList;
-    private ArrayList<Orphan> orphansList;
-    private ArrayList<Donation> donationsList;
-    private ArrayList<InventoryItem> itemsList;
-    private ArrayList<Admin> administrators;
-    private Account bankAccount;
+    private ArrayList<Orphan> orphansList ;
+    private ArrayList<Donation> donationsList ;
+    private ArrayList<InventoryItem> itemsList ;
+    private ArrayList<Admin> administrators ;
+    private Account bankAccount ;
 
     /*
     This no arg constructor initialize arrayLists which are used to store data
     of different classes taken from user
     */
     public OOM(){
-        setStaffList(new ArrayList<>());
-        setOrphansList(new ArrayList<>());
-        setDonationsList(new ArrayList<>());
-        setItemsList(new ArrayList<>());
         setBankAccount(new Account());
-        setAdministrators(new ArrayList<>());
+
+        readStaffFromFile();
+        readAccountFromFile();
+        readDonationFromFile();
+        readOrphanFromFile();
+        readAdminFromFile();
+        readItemFromFile();
+
+
     }
+
+
+
+    public void readStaffFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("staffData.ser"))){
+
+            this.setStaffList( (ArrayList<Staff>) in.readObject());
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+       catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+       }
+
+
+    }
+    public void readOrphanFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("OrphanData.ser"))){
+
+                this.setOrphansList((ArrayList<Orphan>) in.readObject());
+
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+    }
+    public void readItemFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("itemData.ser"))){
+
+            this.setItemsList((ArrayList<InventoryItem>) in.readObject());
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+    }
+    public void readDonationFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("donationData.ser"))){
+            this.setDonationsList((ArrayList<Donation>) in.readObject());
+
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+    }
+    public void readAdminFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("adminData.ser"))){
+            this.setAdministrators((ArrayList<Admin>) in.readObject());
+
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+    }
+    public void readAccountFromFile(){
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("accountData.ser"))){
+           this.setBankAccount((Account) in.readObject());
+
+        }catch (EOFException e){
+            //end of file reached
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
 
     public Account getBankAccount() {
         return bankAccount;
@@ -72,15 +174,6 @@ public class OOM {
     }
 
     public void setAdministrators(ArrayList<Admin> administrators) {
-        Admin khizar=new Admin("Khizar Abbas",new ArrayList<>());
-        khizar.getPasswords().add("zxcvp.234,rt");
-        Admin bilal=new Admin("bilal Mustafa",new ArrayList<>());
-        bilal.getPasswords().add("uroiw4.345a");
-        Admin abdullah=new Admin("Muhammad Abdullah",new ArrayList<>());
-        abdullah.getPasswords().add("afd.345sdfa");
-        administrators.add(khizar);
-        administrators.add(abdullah);
-        administrators.add(bilal);
         this.administrators = administrators;
     }
 }

@@ -1,11 +1,25 @@
 package com.javaxdevelopers.OOMS;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 //Methods with similar working as in staff class
-public class Orphan extends Person{
+public class Orphan extends Person implements Serializable {
+
     private ArrayList<Skill> skillSet;
     private String entryDate;
+
+    public static void writeOrphanToFile(ArrayList<Orphan> orphan) {
+        try (FileOutputStream fos = new FileOutputStream("OrphanData.ser")) {
+            // Check if the file is already created and not empty
+            boolean append = new File("OrphanData.ser").length() > 0;
+            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+            oos.writeObject(orphan);
+            oos.close(); // Close the stream
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public  static void addOrphan(OOM organization){
@@ -15,6 +29,7 @@ public class Orphan extends Person{
             child.inputData();
             child.setId(id);
             organization.getOrphansList().add(child);
+            writeOrphanToFile(organization.getOrphansList());
             System.out.println("Orphan added successfully! ");
 
         }
@@ -81,10 +96,11 @@ public class Orphan extends Person{
                 System.out.println("5: Entry Date");
                 int choice= input.nextInt();
                 child.updateData(choice);
+                writeOrphanToFile(organization.getOrphansList());
 
             }
             if (!flag){
-                System.out.println("No such employee found");
+                System.out.println("No such orphan found");
             }
         }
     }

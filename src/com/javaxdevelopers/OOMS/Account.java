@@ -2,22 +2,33 @@ package com.javaxdevelopers.OOMS;
 
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 //there is only one account of organization so accountID and bank name are preset
-public class Account {
+public class Account implements Serializable {
     private String accountID;
     private String bankName;
     private double balance;
     private ArrayList<Double> transactions = new ArrayList<>();
 
-    public Account(){
-        setAccountID("abl32987456247");
-        setBankName("HBL");
+    public Account() {
     }
+    public static void writeAccountToFile(Account account) {
+        try (FileOutputStream fos = new FileOutputStream("accountData.ser")) {
+            // Check if the file is already created and not empty
+            boolean append = new File("accountData.ser").length() > 0;
+            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+            oos.writeObject(account);
+            oos.close(); // Close the stream
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void depositMoney() throws NoNegativeValueException{
         //used to deposit money in account
@@ -26,9 +37,10 @@ public class Account {
             double amount= input.nextDouble();
             if (amount > 0) {
                 balance += amount;
-                System.out.println("Amount added successfully!");
                 this.checkBalance();
                 this.transactions.add(+amount);
+                writeAccountToFile(this);
+                System.out.println("Amount added successfully!");
             } else {
                 throw new NoNegativeValueException("Negative value cannot be added!");
             }
@@ -37,6 +49,7 @@ public class Account {
         //overLoaded method useful when a known amount is donated
         this.balance+=amount;
         this.transactions.add(+amount);
+        writeAccountToFile(this);
         System.out.println("Amount added successfully!");
     }
     public void withdrawMoney(){
@@ -48,6 +61,7 @@ public class Account {
             System.out.println("Withdrawal successful!");
             this.checkBalance();
             this.transactions.add(-amount);
+            writeAccountToFile(this);
         }
         else {
             System.out.println("Insufficient balance");

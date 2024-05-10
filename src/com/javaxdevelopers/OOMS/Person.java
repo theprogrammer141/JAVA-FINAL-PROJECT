@@ -1,9 +1,12 @@
 package com.javaxdevelopers.OOMS;
 import com.javaxdevelopers.exceptionhandlers.InvalidAgeException;
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
+
+import java.io.Serializable;
 import java.util.Scanner;
 //Super class for staff/orphan with common attributes of both
-public class Person {
+public class Person implements Serializable {
+
     private int id;
     private String name;
     private String gender;
@@ -33,11 +36,10 @@ public class Person {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println("If he is educated Enter 1: ");
+        System.out.println("Enter 1 for Educated: ");
         if (input.nextInt()==1) {
             this.setEducation(Education.inputEducation());
-        }else
-            this.setEducation(null);
+        }
     }
     public void displayData() {
         System.out.println("Name: " + this.getName());
