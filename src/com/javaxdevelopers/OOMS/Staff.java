@@ -20,10 +20,10 @@ public class Staff extends Person implements Serializable {
      */
 
     public static void writeStaffToFile(ArrayList<Staff> staff) {
-        try (FileOutputStream fos = new FileOutputStream("staffData.ser")) {
+        try (ObjectOutputStream oos = new ObjectOutputStream( new FileOutputStream("staffData.ser"))) {
             // Check if the file is already created and not empty
-            boolean append = new File("staffData.ser").length() > 0;
-            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+            //boolean append = new File("staffData.ser").length() > 0;
+            //ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
             oos.writeObject(staff);
             oos.close(); // Close the stream
         } catch (IOException e) {

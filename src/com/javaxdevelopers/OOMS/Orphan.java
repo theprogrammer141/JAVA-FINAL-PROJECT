@@ -10,10 +10,10 @@ public class Orphan extends Person implements Serializable {
     private String entryDate;
 
     public static void writeOrphanToFile(ArrayList<Orphan> orphan) {
-        try (FileOutputStream fos = new FileOutputStream("OrphanData.ser")) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("OrphanData.ser"))) {
             // Check if the file is already created and not empty
-            boolean append = new File("OrphanData.ser").length() > 0;
-            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+            //boolean append = new File("OrphanData.ser").length() > 0;
+            //ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
             oos.writeObject(orphan);
             oos.close(); // Close the stream
         } catch (IOException e) {
