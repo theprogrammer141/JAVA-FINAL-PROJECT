@@ -23,8 +23,6 @@ public class OOM {
     of different classes taken from user
     */
     public OOM(){
-        setBankAccount(new Account());
-
         readStaffFromFile();
         readAccountFromFile();
         readDonationFromFile();
