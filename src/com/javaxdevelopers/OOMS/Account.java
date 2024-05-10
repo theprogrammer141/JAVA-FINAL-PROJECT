@@ -15,13 +15,10 @@ public class Account implements Serializable {
     private double balance;
     private ArrayList<Double> transactions = new ArrayList<>();
 
-    public Account(){
-        setAccountID("abl32987456247");
-        setBankName("HBL");
-        writeAccountToFile(this);
+    public Account() {
     }
     public static void writeAccountToFile(Account account) {
-        try (FileOutputStream fos = new FileOutputStream("accountData.ser", true)) {
+        try (FileOutputStream fos = new FileOutputStream("accountData.ser")) {
             // Check if the file is already created and not empty
             boolean append = new File("accountData.ser").length() > 0;
             ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
@@ -40,9 +37,10 @@ public class Account implements Serializable {
             double amount= input.nextDouble();
             if (amount > 0) {
                 balance += amount;
-                System.out.println("Amount added successfully!");
                 this.checkBalance();
                 this.transactions.add(+amount);
+                writeAccountToFile(this);
+                System.out.println("Amount added successfully!");
             } else {
                 throw new NoNegativeValueException("Negative value cannot be added!");
             }
@@ -51,6 +49,7 @@ public class Account implements Serializable {
         //overLoaded method useful when a known amount is donated
         this.balance+=amount;
         this.transactions.add(+amount);
+        writeAccountToFile(this);
         System.out.println("Amount added successfully!");
     }
     public void withdrawMoney(){
@@ -62,6 +61,7 @@ public class Account implements Serializable {
             System.out.println("Withdrawal successful!");
             this.checkBalance();
             this.transactions.add(-amount);
+            writeAccountToFile(this);
         }
         else {
             System.out.println("Insufficient balance");

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin implements Serializable {
+
     private String adminName;
 
     private ArrayList<String> passwords;
@@ -14,8 +15,8 @@ public class Admin implements Serializable {
 
     }
 
-    public static void writeAdminToFile(Admin admin) {
-        try (FileOutputStream fos = new FileOutputStream("adminData.ser", true)) {
+    public static void writeAdminToFile(ArrayList<Admin> admin) {
+        try (FileOutputStream fos = new FileOutputStream("adminData.ser")) {
             // Check if the file is already created and not empty
             boolean append = new File("adminData.ser").length() > 0;
             ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
@@ -63,7 +64,7 @@ public class Admin implements Serializable {
             passwords.add(inputString.nextLine());
             newAdmin.setPasswords(passwords);
             administrator.add(newAdmin);
-            writeAdminToFile(newAdmin);
+            writeAdminToFile(administrator);
         }else
             System.out.println("Admin authentication failed!");
     }

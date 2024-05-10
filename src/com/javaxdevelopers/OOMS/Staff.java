@@ -4,9 +4,11 @@ import com.javaxdevelopers.exceptionhandlers.InvalidContactNumberException;
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Staff extends Person implements Serializable {
+
     private String contact;
     private String role;
     private double pay;
@@ -17,8 +19,8 @@ public class Staff extends Person implements Serializable {
     set values after creating empty object
      */
 
-    public static void writeStaffToFile(Staff staff) {
-        try (FileOutputStream fos = new FileOutputStream("staffData.ser", true)) {
+    public static void writeStaffToFile(ArrayList<Staff> staff) {
+        try (FileOutputStream fos = new FileOutputStream("staffData.ser")) {
             // Check if the file is already created and not empty
             boolean append = new File("staffData.ser").length() > 0;
             ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
@@ -30,7 +32,9 @@ public class Staff extends Person implements Serializable {
     }
 
 
-public static void addStaff(OOM organization){
+
+
+    public static void addStaff(OOM organization){
     //checks if there is room for more staff and then calls inputData method to set values
     //of staff object and then store it in staffList in management class
     int id = organization.getStaffList().size() + 1;
@@ -39,7 +43,7 @@ public static void addStaff(OOM organization){
         employee.inputData();
         employee.setId(id);
         organization.getStaffList().add(employee);
-        writeStaffToFile(employee);
+        writeStaffToFile(organization.getStaffList());
         System.out.println("Staff added successfully! ");
 
     }
@@ -131,6 +135,8 @@ public static void updateRecordOptions(OOM organization){
             System.out.println("No such employee found");
         }
     }
+    //updateFile(organization.getStaffList());
+    writeStaffToFile(organization.getStaffList());
 }
 
 @Override

@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public class Education implements Serializable {
+
     private String educationLevel;
     private String institute;
+
     public Education(){}
     public static Education inputEducation(){
         //stores values for one degree of education and returns it

@@ -23,35 +23,25 @@ public class OOM {
     of different classes taken from user
     */
     public OOM(){
-        setStaffList(new ArrayList<>());
-        setAdministrators(new ArrayList<>());
-        setDonationsList(new ArrayList<>());
-        setItemsList(new ArrayList<>());
-        setOrphansList(new ArrayList<>());
         setBankAccount(new Account());
-        readFromFile();
 
-
-    }
-    public void readFromFile(){
         readStaffFromFile();
         readAccountFromFile();
         readDonationFromFile();
         readOrphanFromFile();
         readAdminFromFile();
         readItemFromFile();
+
+
     }
+
 
 
     public void readStaffFromFile(){
 
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("staffData.ser"))){
-            Staff staff;
 
-            while ((staff = (Staff) in.readObject()) !=null){
-                this.getStaffList().add(staff);
-
-            }
+            this.setStaffList( (ArrayList<Staff>) in.readObject());
 
         }catch (EOFException e){
             //end of file reached
@@ -65,11 +55,9 @@ public class OOM {
     public void readOrphanFromFile(){
 
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("OrphanData.ser"))){
-            Orphan orphan;
 
-            while ((orphan = (Orphan) in.readObject()) !=null){
-                this.getOrphansList().add(orphan);
-            }
+                this.setOrphansList((ArrayList<Orphan>) in.readObject());
+
 
         }catch (EOFException e){
             //end of file reached
@@ -83,11 +71,8 @@ public class OOM {
     public void readItemFromFile(){
 
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("itemData.ser"))){
-            InventoryItem item;
 
-            while ((item = (InventoryItem) in.readObject()) !=null){
-                this.getItemsList().add(item);
-            }
+            this.setItemsList((ArrayList<InventoryItem>) in.readObject());
 
         }catch (EOFException e){
             //end of file reached
@@ -101,11 +86,8 @@ public class OOM {
     public void readDonationFromFile(){
 
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("donationData.ser"))){
-            Donation donation;
+            this.setDonationsList((ArrayList<Donation>) in.readObject());
 
-            while ((donation = (Donation) in.readObject()) !=null){
-                this.getDonationsList().add(donation);
-            }
 
         }catch (EOFException e){
             //end of file reached
@@ -119,11 +101,8 @@ public class OOM {
     public void readAdminFromFile(){
 
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("adminData.ser"))){
-            Admin admin;
+            this.setAdministrators((ArrayList<Admin>) in.readObject());
 
-            while ((admin = (Admin) in.readObject()) !=null){
-                this.getAdministrators().add(admin);
-            }
 
         }catch (EOFException e){
             //end of file reached
@@ -137,11 +116,7 @@ public class OOM {
     public void readAccountFromFile(){
 
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("accountData.ser"))){
-            Account account;
-
-            while ((account = (Account) in.readObject()) !=null){
-                this.setBankAccount(account);
-            }
+           this.setBankAccount((Account) in.readObject());
 
         }catch (EOFException e){
             //end of file reached
@@ -199,7 +174,6 @@ public class OOM {
     }
 
     public void setAdministrators(ArrayList<Admin> administrators) {
-
         this.administrators = administrators;
     }
 }

@@ -3,6 +3,7 @@ package com.javaxdevelopers.OOMS;
 import com.javaxdevelopers.exceptionhandlers.NoNegativeValueException;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 //This class keeps record of donations made for organization
 public class Donation implements Serializable {
@@ -15,8 +16,8 @@ public class Donation implements Serializable {
     No arg constructor makes object for which we can set values rather that storing
     them in different variables and then using fully parametrized constructor*/
 
-    public static void writeDonationToFile(Donation donation) {
-        try (FileOutputStream fos = new FileOutputStream("donationData.ser", true)) {
+    public static void writeDonationToFile(ArrayList<Donation> donation) {
+        try (FileOutputStream fos = new FileOutputStream("donationData.ser")) {
             // Check if the file is already created and not empty
             boolean append = new File("donationData.ser").length() > 0;
             ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
@@ -38,7 +39,7 @@ public class Donation implements Serializable {
         donation.setDonationId(organization.getDonationsList().size()+1);
 
         organization.getDonationsList().add(donation);
-        writeDonationToFile(donation);
+        writeDonationToFile(organization.getDonationsList());
         organization.getBankAccount().depositMoney(donation.getDonationAmount());
     }
 
