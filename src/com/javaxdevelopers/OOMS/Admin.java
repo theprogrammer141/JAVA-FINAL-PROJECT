@@ -16,10 +16,10 @@ public class Admin implements Serializable {
     }
 
     public static void writeAdminToFile(ArrayList<Admin> admin) {
-        try (FileOutputStream fos = new FileOutputStream("adminData.ser")) {
+        try (ObjectOutputStream oos= new ObjectOutputStream( new FileOutputStream("adminData.ser")) ){
             // Check if the file is already created and not empty
-            boolean append = new File("adminData.ser").length() > 0;
-            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+            //boolean append = new File("adminData.ser").length() > 0;
+            //ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
             oos.writeObject(admin);
             oos.close(); // Close the stream
         } catch (IOException e) {

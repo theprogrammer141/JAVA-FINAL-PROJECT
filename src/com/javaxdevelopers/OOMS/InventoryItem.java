@@ -15,10 +15,10 @@ public class InventoryItem implements Serializable {
 
 
     public static void writeItemToFile(ArrayList<InventoryItem> item) {
-        try (FileOutputStream fos = new FileOutputStream("itemData.ser")) {
+        try (ObjectOutputStream oos = new ObjectOutputStream( new FileOutputStream("itemData.ser"))) {
             // Check if the file is already created and not empty
-            boolean append = new File("itemData.ser").length() > 0;
-            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+           // boolean append = new File("itemData.ser").length() > 0;
+            //ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
             oos.writeObject(item);
             oos.close(); // Close the stream
         } catch (IOException e) {

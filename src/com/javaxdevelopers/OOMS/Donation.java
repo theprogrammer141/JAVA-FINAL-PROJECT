@@ -17,12 +17,12 @@ public class Donation implements Serializable {
     them in different variables and then using fully parametrized constructor*/
 
     public static void writeDonationToFile(ArrayList<Donation> donation) {
-        try (FileOutputStream fos = new FileOutputStream("donationData.ser")) {
+        try (ObjectOutputStream oos  = new ObjectOutputStream( new FileOutputStream("donationData.ser"))) {
             // Check if the file is already created and not empty
-            boolean append = new File("donationData.ser").length() > 0;
-            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
+           // boolean append = new File("donationData.ser").length() > 0;
+           // ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
             oos.writeObject(donation);
-            oos.close(); // Close the stream
+            // Close the stream
         } catch (IOException e) {
             e.printStackTrace();
         }
